@@ -5,8 +5,6 @@
  */
 package coetus.bibendum.test;
 
-import coetus.bibendum.modele.Calcul;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -16,17 +14,17 @@ import java.time.LocalDateTime;
 public class TestCalculation {
     
     public static void main(String[] args) {
-        String tab [] = new String [] {"LUNDI","MARDI", "MERCREDI","JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"};
-        Calcul calc = new Calcul();
-        System.out.println(calc.GenererNumeroTicket());
-         calc.genererTirage();
-         System.out.println(calc.getTable());
-         
-         System.out.println( tab[LocalDate.now().getDayOfWeek().ordinal()]);
+//        String tab [] = new String [] {"LUNDI","MARDI", "MERCREDI","JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"};
+//        Calcul calc = new Calcul();
+//        System.out.println(calc.GenererNumeroTicket());
+//         calc.genererTirage();
+//         System.out.println(calc.getTable());
+//         
+//         System.out.println( tab[LocalDate.now().getDayOfWeek().ordinal()]);
 
     int minute = LocalDateTime.now().getMinute();
     
-        System.out.println(LocalDate.MAX);
+        System.out.println(minute);
         
     }
 }

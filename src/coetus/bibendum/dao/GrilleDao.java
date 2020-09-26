@@ -6,10 +6,14 @@
 package coetus.bibendum.dao;
 
 import coetus.bibendum.connexion.Connexion;
+import coetus.bibendum.modele.Calcul;
 import coetus.bibendum.modele.Grille;
+import coetus.bibendum.modele.Tirage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,8 +37,8 @@ public class GrilleDao {
         PreparedStatement preparedStatement = null;
         
         String sql = "insert into grille(montantMise, num1, num2, "
-                + "num3, num4, num5, Ticket, numBonus, idCompte, idTypeLotto)"
-                + "values (?,?,?,?,?,?,?,?,?,?)";
+                + "num3, num4, num5, Ticket, numBonus, idCompte, idTypeLotto, idTyrage )"
+                + "values (?,?,?,?,?,?,?,?,?,?,?)";
         
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -77,6 +81,20 @@ public class GrilleDao {
             preparedStatement.setInt(9, new CompteDao().getBypseudo(jeuUtilisateur.getJoueur().getPseudo()).getIdCompte()); 
             preparedStatement.setInt(10, new TypeLottoDao().getByLibelle(jeuUtilisateur.getTypeLotto().getLibelle()).getIdTypeLotto());
             
+            Calcul calcul = new Calcul();
+            int[] tirageTableau = calcul.genererTirage();
+            int numBonus = calcul.GenererNumeroBonus();
+            Tirage tirage = new Tirage(tirageTableau[0], tirageTableau[1], tirageTableau[2], tirageTableau[3], tirageTableau[4], numBonus);
+            TirageDao tirageDao = new TirageDao();
+            tirageDao.creerTirage(tirage);
+            int mois = LocalDate.now().getMonthValue();
+            int minute = LocalDateTime.now().getMinute();
+            int heure = LocalDateTime.now().getHour();
+            int seconde = LocalDateTime.now().getSecond();
+            int jour = LocalDate.now().getDayOfMonth();
+            System.out.println(mois +"\t" + jour +"\t" + heure +"\t" + minute +"\t" + seconde);
+            
+            preparedStatement.setInt(11, new TirageDao().getByHourMinuteAndMounth(mois, heure, minute, seconde, jour).getIdTirage());
             
             
         } catch (SQLException ex) {

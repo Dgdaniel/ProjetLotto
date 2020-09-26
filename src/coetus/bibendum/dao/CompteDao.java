@@ -386,4 +386,51 @@ Cette methode permet de supprimer un compte
         return b;
 
     }
+    
+    /*
+    ------------------------------------------------------------
+    methode pour se connecter il verifie a la fois le pseudo et 
+    le mot de passe 
+    --------------------------------------------------------------
+    */
+    
+    public  Compte getByPseudoPassWord(String pseudo, String pass){
+         {
+            Connection connection = Connexion.getConnexion();
+           PreparedStatement preparedStatement = null;
+           Compte compte = null;
+           String sql = "select * from compte where pseudo = ? and motDePasse = ?";
+           ResultSet rs = null;
+           
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         try {
+            preparedStatement.setString(1, pseudo);
+            preparedStatement.setString(2, pass);
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
+        try {
+             rs = preparedStatement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
+        try {
+            while (rs.next()) {
+                compte = new Compte(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), 
+                        rs.getDate(6).toLocalDate(),  new PersonneDao().getById(rs.getInt(7))); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           return compte;
+       }
+    }
 }

@@ -266,7 +266,7 @@ public class TirageDao {
         Connection  con = Connexion.getConnexion();
         PreparedStatement statement = null;
         Tirage retreive = null;
-        
+     
         String sql = "select * from tirage where date(dateTyrage) = ?";
         try {
             statement = con.prepareStatement(sql);
@@ -347,6 +347,57 @@ public class TirageDao {
         return fresh;
     }
     
+    public Tirage getByHourMinuteAndMounth(int mois, int heure, int minute, int seconde, int jour){
+         Connection connection = Connexion.getConnexion();
+        PreparedStatement statement = null;
+        Tirage fresh = null;
+     
+        
+        String retreive = "select * from tirage where month(dateTyrage) = ? and hour(dateTyrage) = ? and minute(dateTyrage) = ? "
+                + "and second(dateTyrage) = ? and day(dateTyrage) = ?";
+        try {
+            statement = connection.prepareCall(retreive);
+        } catch (SQLException ex) {
+            Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        try {
+            statement.setInt(1, mois);
+             statement.setInt(2, heure);
+              statement.setInt(3, minute);
+              statement.setInt(4, seconde);
+              statement.setInt(5, jour);
+        } catch (SQLException ex) {
+            Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet res = null;
+        
+        try {
+            res = statement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        try {
+            
+            while (res.next()) {                
+                  fresh = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4)
+                         , res.getInt(5), res.getInt(6), res.getInt(7), res.getInt(8), 
+                         res.getDate(2).toLocalDate(), res.getString(9));
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+       
+        
+        return fresh;
+        
+    }
+    
+      
     
     /*
     ----------------------------------------------------------------

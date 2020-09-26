@@ -34,9 +34,11 @@ public class TestGrilleDao {
         CompteDao cdao = new CompteDao();
         Compte cmake = new Compte("Flavien", "flava254", 15005, ya);
        // cdao.creerCompte(cmake);
-        Grille g = new Grille(14, 40, 58, 62, 24, 8, 500, cmake, new TypeLotto("Kadoo"));
+        Grille g = new Grille(14, 80, 88, 72, 24, 9, 400, cmake, new TypeLotto("Kadoo"));
         GrilleDao grilleDao = new GrilleDao();
         grilleDao.creerGrille(g);
+        System.out.println(cal.GenererNumeroBonus());
+        
 
     }
 }

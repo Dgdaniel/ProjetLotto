@@ -35,7 +35,7 @@ public class Calcul {
     public int GenererNumeroBonus()
     {
         random = new Random();
-        numbonusTirage = random.nextInt(11);
+        numbonusTirage = 1 + random.nextInt(11);
         return numbonusTirage;
     }
     

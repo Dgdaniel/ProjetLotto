@@ -32,7 +32,7 @@ public class Tirage {
             this.numtir5 = numtir5;
             this.numtirbonus = numtirbonus;
 
-            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().name());
+            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
         } else {
             System.err.println("Le numero ne doit pas depasser 90 de meme que le numero bonus ne doit pas depasser 10");
         }
@@ -48,7 +48,7 @@ public class Tirage {
             this.numtir4 = numtir4;
             this.numtir5 = numtir5;
             this.numtirbonus = numtirbonus;
-            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().name());
+            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
         } else {
             System.err.println("Le numero ne doit pas depasser 90 de meme que le numero bonus ne doit pas depasser 10");
         }
@@ -58,7 +58,7 @@ public class Tirage {
         if (numtir1 <= 90 && numtir2 <= 90) {
             this.numtir1 = numtir1;
             this.numtir2 = numtir2;
-            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().name());
+            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
         } else {
             System.err.println("Le numero ne doit pas depasser 90 de meme que le numero bonus ne doit pas depasser 10");
         }
@@ -71,7 +71,7 @@ public class Tirage {
             this.numtir1 = numtir1;
             this.numtir2 = numtir2;
             this.numtir3 = numtir3;
-            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().name());
+            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
         }
 
     }
@@ -83,7 +83,7 @@ public class Tirage {
             this.numtir2 = numtir2;
             this.numtir3 = numtir3;
             this.numtir4 = numtir4;
-            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().name());
+            this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
         } else {
             System.err.println("Le numero ne doit pas depasser 90 de meme que le numero bonus ne doit pas depasser 10");
         }
@@ -169,9 +169,10 @@ public class Tirage {
                 + numtir4 + "  " + " num Tirage 5 :  " + numtir5 + "  " + " num Tirage Bonus  :  " + "  " + numtirbonus + " jour du tirage " + jourTirage;
     }
 
-    public Tirage(int idTirage, int numtir1, int numtir2, int numtir3, int numtir4, int numtir5, int numtirbonus, LocalDate datetirage, String jourTirage) {
+    public Tirage(int idTirage, int numtir1, int numtir2, int numtir3, int numtir4, int numtir5, int numtirbonus, 
+            LocalDate datetirage, String jourTirage) {
 
-        if (numtir1 <= 90 && numtir2 <= 90 && numtir3 <= 90 && numtir4 <= 90 && numtir5 <= 90 && numtirbonus <= 10) {
+ 
             this.idTirage = idTirage;
             this.numtir1 = numtir1;
             this.numtir2 = numtir2;
@@ -181,7 +182,7 @@ public class Tirage {
             this.numtirbonus = numtirbonus;
             this.datetirage = datetirage;
             this.jourTirage = jourTirage;
-        }
+     
 
     }
 
@@ -209,26 +210,13 @@ public class Tirage {
         }
 
     }
+    
+    
 
-    public static String RecevoirJourDeLaSemaine(String DayOfWeek) {
+    public static String RecevoirJourDeLaSemaine(int DayOfWeek) {
+         String tab [] = new String [] {"LUNDI","MARDI", "MERCREDI","JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"};
         String jourDeLaSemaine;
-        if (DayOfWeek.equals("MONDAY")) {
-            jourDeLaSemaine = "LUNDI";
-        } else if (DayOfWeek.equals("TUESDAY")) {
-            jourDeLaSemaine = "MARDI";
-        } else if (DayOfWeek.equals("WEDNESDAY")) {
-            jourDeLaSemaine = "MERCREDI";
-        } else if (DayOfWeek.equalsIgnoreCase("thursday")) {
-            jourDeLaSemaine = "JEUDI";
-        } else if (DayOfWeek.equalsIgnoreCase("friday")) {
-            jourDeLaSemaine = "vendredi".toUpperCase();
-        } else if (DayOfWeek.equalsIgnoreCase("saturday")) {
-            jourDeLaSemaine = "samedi".toUpperCase();
-        } else {
-            jourDeLaSemaine = "dimanche".toUpperCase();
-        }
-
-        return jourDeLaSemaine;
+        return jourDeLaSemaine = tab[DayOfWeek];
     }
 
 }
