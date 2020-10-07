@@ -35,7 +35,7 @@ public class Connexion {
       
       try {
           connection = DriverManager.getConnection(URL,USER, PASS);
-          System.out.println("connexion reussi");
+          System.out.println("Database connected");
       } catch (SQLException ex) {
           Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
       }

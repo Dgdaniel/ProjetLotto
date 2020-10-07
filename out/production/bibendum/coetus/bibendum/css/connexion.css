@@ -7,7 +7,7 @@
      -fx-background-color  : linear-gradient(to bottom left, #2f459e ,#5c057f);
 }
 .imageViewLeftPane{
-    -fx-image:url("../icon/broken-zone.png");  
+    -fx-image:url("../icon/logos.jpg");  
 }
 
 .lottoName{
@@ -16,12 +16,10 @@
     -fx-fill : white;
     -fx-text-alignment : center;
 }
-
 .connexion{
     -fx-background-radius : 15px;
-    -fx-background-color : #5c057f;
+    -fx-background-color : #2f459e;
     -fx-text-fill: white;
-    -fx-alignment:CENTER;
    
 }
 .connexion:hover {
@@ -37,7 +35,7 @@
 }
 .creerCompte{
     -fx-background-radius : 15px;
-    -fx-background-color : #5c057f;
+    -fx-background-color : #2f459e;
      -fx-text-fill : white;
 }
 
@@ -66,20 +64,4 @@
     -fx-focus-color :#2f459e;
     -fx-border-widht : 1px ;
     -fx-margin: 15px;
-    
 }
-.textField{
-    -fx-border-width: 0px 0px 2px 0px;
-    -fx-border-color:gray;
-    -fx-background-color: transparent;
-}
-
-.textField:focused{
-   -fx-border-width: 0px 0px 3px 0px;
-    -fx-border-color:dodgerblue;
-    -fx-background-color: transparent; 
-    -fx-font-familly: Shruti;
-    -fx-font-size:15px;
-    
-}
-

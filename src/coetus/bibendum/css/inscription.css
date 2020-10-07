@@ -1,7 +1,9 @@
 /*
  * Empty Stylesheet file.
  */
-
+.mainFxmlClass{
+    -fx-background-color  : linear-gradient(to bottom left, #2f459e ,#5c057f);
+}
 #AnchorPane {
    -fx-background-color  : linear-gradient(to bottom left, #2f459e ,#5c057f);
 }
@@ -26,12 +28,15 @@
 .inscription{
     -fx-text-fill:#2f459e;
     -fx-font-size: 45px;
-    -fx-font-style: bold;
+    
     
 }
 .formText{
+    -fx-animated: true;
+    -fx-background-radius : 3px;
      -fx-font-size: 15px;
      -fx-font-familly : Shruti;
      -fx-text-fill:black;
+     -fx-display-caret: false;
 }
 

@@ -399,7 +399,7 @@ Cette methode permet de supprimer un compte
             Connection connection = Connexion.getConnexion();
            PreparedStatement preparedStatement = null;
            Compte compte = null;
-           String sql = "select * from compte where pseudo = ? and motDePasse = ?";
+           String sql = "select * from compte where pseudo =? and motDePasse =?";
            ResultSet rs = null;
            
         try {

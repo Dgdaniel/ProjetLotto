@@ -25,10 +25,11 @@ public class TestCompteDao {
 
         Compte newCompte = new Compte("Frank", "frank052", 15000, person);
         CompteDao dao = new CompteDao();
-
+        
+        System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
 //        System.out.println(dao.verifierPseudo("Frank"));
 //        dao.creerCompte(newCompte);
-        dao.creerCompte(c);
+       // dao.creerCompte(c);
 
 //        dao.deleteById(1);
 //pdao.createPersonne(pu);

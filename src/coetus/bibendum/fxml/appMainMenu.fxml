@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coetus.bibendum.controller.AppMainMenuController">
+   <children>
+      <BorderPane fx:id="BorderPaneView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="1080.0" prefWidth="370.0" styleClass="borderPaneLeft" stylesheets="@../css/appmainmenu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="431.0" prefWidth="370.0">
+                     <children>
+                        <ImageView fitHeight="183.0" fitWidth="165.0" layoutX="93.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" styleClass="icon" />
+                        <Text layoutX="112.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon-text" text="Aleam Lotto" textAlignment="CENTER" wrappingWidth="126.93673706054688">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font></Text>
+                     </children>
+                  </Pane>
+                  <JFXButton fx:id="AcceuilButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#handleBntAcceuil" prefHeight="80.0" prefWidth="370.0" stylesheets="@../css/appmainmenu.css" text="Acceuil">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="homeView" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TombolaButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" onAction="#handleBntTombola" prefHeight="80.0" prefWidth="370.0" stylesheets="@../css/appmainmenu.css" text="Tombola">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="raffleView" />
+                     </graphic>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="LottoButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="60.0" onAction="#handleBntLotto" prefHeight="80.0" prefWidth="370.0" stylesheets="@../css/appmainmenu.css" text="Lotto   ">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="lottoView" />
+                     </graphic>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="ParametreButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="111.0" onAction="#handleBntParametre" prefHeight="80.0" prefWidth="370.0" stylesheets="@../css/appmainmenu.css" text="Parametre  ">
+                     <graphic>
+                        <ImageView id="gear" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <Pane fx:id="BorderPaneCenter" prefHeight="1080.0" prefWidth="1550.0" stylesheets="@../css/appmainmenu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="-2.0" layoutY="27.0" prefHeight="75.0" prefWidth="1552.0" style="-fx-background-color: #5c057f;">
+                     <children>
+                        <Label fx:id="UserNameOnTheTopBar" alignment="CENTER" contentDisplay="RIGHT" layoutX="1063.0" layoutY="15.0" prefHeight="46.0" prefWidth="443.0" styleClass="splitTopContent" stylesheets="@../css/appmainmenu.css" text="Welcome to UserLastname User" />
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="127.0" fitWidth="149.0" layoutX="84.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
+                  <Pane focusTraversable="true" layoutX="38.0" layoutY="128.0" prefHeight="230.0" prefWidth="474.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="177.0" fitWidth="178.0" layoutX="22.0" layoutY="22.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/jki.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="233.0" layoutY="43.0" strokeDashOffset="15.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="Nous disposons dans notre catalogue deux types de loteries  à savoir le tombola. Pour y jouer,  il suffit de choisir les chiffres et s'assurer que son compte est valide et choisir le montant qu'on souhaite miser" wrappingWidth="223.7366943359375">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" offsetX="5.0" offsetY="5.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="561.0" layoutY="138.0" prefHeight="210.0" prefWidth="460.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="155.0" fitWidth="178.0" layoutX="17.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/OIP.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="212.0" layoutY="30.0" strokeDashOffset="15.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="Pour le second type rien de plus simple que de choisir cinq chiffres aux maximum ou deux ou minimum. Ensuite appuyer ou clicker sur le bouton jouer. Après quelque instant nous vous notifierons sur votre statu  ( vous avez gagnez ou perdu )" wrappingWidth="242.136962890625">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" offsetX="5.0" offsetY="5.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <ImageView fitHeight="95.0" fitWidth="105.0" layoutX="84.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" />
+                  <Pane layoutX="46.0" layoutY="423.0" prefHeight="196.0" prefWidth="447.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="circularImage">
+                           <image>
+                              <Image url="@../icon/man-1.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="133.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sampleText" text="Job Doe MONTENEGRO" />
+                        <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="45.0" layoutY="112.0" strokeDashOffset="15.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="je viens de jouer la lotteries du mardi et devine quoi, j'ai gagner une somme vraiment cool. je pense que je jouerai pour gagner plus " wrappingWidth="365.9192810058594" />
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="545.0" layoutY="421.0" prefHeight="200.0" prefWidth="460.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="34.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/search.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="148.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sampleText" text="Daniz Stephen" wrappingWidth="214.1585693359375" />
+                        <Text layoutX="34.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="La lotterie, le truc qui m'amuse le plus. Fais une combine de numéro et gagne.Je ne sais pas comment je fais, mais j'en gagne tout le temps. Venez et tentez votre chance" wrappingWidth="406.07666015625" />
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <StackedAreaChart layoutX="49.0" layoutY="674.0" prefHeight="309.0" prefWidth="647.0">
+                    <xAxis>
+                      <NumberAxis />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </StackedAreaChart>
+                  <Pane layoutX="1056.0" layoutY="421.0" prefHeight="200.0" prefWidth="460.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="34.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/connexion.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="148.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sampleText" text="Camille Sena" wrappingWidth="214.1585693359375" />
+                        <Text layoutX="34.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="La lotterie, seulement en jouant, les bonnes combines arrivent d'eux même. Pas besoins d'être un professionnnel. Venez et tentez votre chance" wrappingWidth="406.07666015625" />
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="1065.0" layoutY="145.0" prefHeight="206.0" prefWidth="460.0" style="-fx-background-color: #fff;" styleClass="pane" stylesheets="@../css/appmainmenu.css">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="34.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/dice.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="148.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sampleText" text="Aristote DuPont" wrappingWidth="214.1585693359375" />
+                        <Text layoutX="34.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textArea" text="Le jeu de lotterie, tout le monde y gagne. Moi mon domaine est le tombola. En fait, il suffit de choisir les bonnes cartes; ensuite tu gagne ou tu gagne 😉😉" wrappingWidth="406.07666015625" />
+                     </children>
+                     <effect>
+                        <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                     </effect>
+                  </Pane>
+                  <StackedAreaChart layoutX="823.0" layoutY="665.0" prefHeight="309.0" prefWidth="668.0">
+                     <xAxis>
+                        <NumberAxis />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </StackedAreaChart>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1550.0" style="-fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coetus.bibendum.controller.SettingController">
+    <stylesheets>
+        <URL value="@/coetus/bibendum/css/setting.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-2.0" layoutY="27.0" prefHeight="75.0" prefWidth="1055.0" style="-fx-background-color: #5c057f;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="userNameTopBar" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="1063.0" layoutY="15.0" prefHeight="51.0" prefWidth="436.0" styleClass="userName" stylesheets="@../css/setting.css" text="UserLastName UserName" />
+         </children>
+      </Pane>
+      <Pane layoutX="31.0" layoutY="122.0" prefHeight="282.0" prefWidth="1495.0" style="-fx-background-color: #fff; -fx-background-radius: 0px 0px 10px 10px;" stylesheets="@../css/setting.css" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="120.0">
+         <effect>
+            <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+         </effect>
+         <children>
+            <Label layoutX="58.0" layoutY="27.0" prefHeight="30.0" prefWidth="49.0" styleClass="texte" stylesheets="@../css/setting.css" text="Nom" />
+            <Label layoutX="56.0" layoutY="73.0" prefHeight="30.0" prefWidth="73.0" styleClass="texte" stylesheets="@../css/setting.css" text="Prenom" />
+            <Line endX="100.7333984375" endY="125.39999389648438" layoutX="468.0" layoutY="133.0" startX="100.7333984375" startY="-112.13333129882812" stroke="GREY" />
+            <Text layoutX="591.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="solde" text="SOLDE" wrappingWidth="90.199951171875" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="667.0" layoutY="66.0" prefHeight="51.0" prefWidth="237.0" styleClass="soldeLabel" stylesheets="@../css/setting.css" text="125 000 000 000" />
+            <JFXButton contentDisplay="CENTER" layoutX="619.0" layoutY="170.0" prefHeight="30.0" prefWidth="210.0" stylesheets="@../css/setting.css" text="Depot" />
+            <JFXButton contentDisplay="CENTER" layoutX="86.0" layoutY="194.0" prefHeight="30.0" prefWidth="351.0" stylesheets="@../css/setting.css" text="Modifier profil" />
+            <Text layoutX="1099.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="solde" text="Prix Gagner" wrappingWidth="111.0" />
+            <Label layoutX="61.0" layoutY="121.0" prefHeight="30.0" prefWidth="36.0" styleClass="texte" stylesheets="@../css/setting.css" text="Age" />
+            <Label layoutX="144.0" layoutY="24.0" prefHeight="36.0" prefWidth="249.0" styleClass="label-fill" stylesheets="@../css/setting.css" text="MONTENEGRO" />
+            <Label layoutX="141.0" layoutY="70.0" prefHeight="36.0" prefWidth="249.0" styleClass="label-fill" stylesheets="@../css/setting.css" text="JOB DOE" />
+            <Label layoutX="137.0" layoutY="121.0" prefHeight="36.0" prefWidth="249.0" styleClass="label-fill" stylesheets="@../css/setting.css" text="35" />
+            <JFXButton contentDisplay="CENTER" layoutX="907.0" layoutY="173.0" prefHeight="30.0" prefWidth="211.0" stylesheets="@../css/setting.css" text="Transfert" />
+            <JFXButton contentDisplay="CENTER" layoutX="1195.0" layoutY="176.0" prefHeight="30.0" prefWidth="211.0" stylesheets="@../css/setting.css" text="Retrait" />
+            <Text layoutX="594.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fcfa" text="FCFA" wrappingWidth="49.00000000000006" />
+            <Text layoutX="1109.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fcfa" text="FCFA" wrappingWidth="49.00000000000006" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1172.0" layoutY="72.0" prefHeight="51.0" prefWidth="237.0" styleClass="soldeLabel" stylesheets="@../css/setting.css" text="5 000" />
+         </children>
+      </Pane>
+      <TableView editable="true" layoutX="31.0" layoutY="429.0" prefHeight="560.0" prefWidth="1495.0" styleClass="tableView" stylesheets="@../css/setting.css">
+        <columns>
+          <TableColumn prefWidth="300.0" text="Montant miser" />
+          <TableColumn prefWidth="300.0" text="Jeux" />
+            <TableColumn prefWidth="300.0" text="Resultat Jeu" />
+            <TableColumn minWidth="198.0" prefWidth="300.0" text="Ticket" />
+            <TableColumn minWidth="300.0" prefWidth="163.199951171875" text="Date Jeu" />
+        </columns>
+         <effect>
+            <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+         </effect>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,90 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.borderPaneLeft
+{
+    -fx-background-color:#4169e1;
+}
+.homeView{
+    -fx-image:url("../icon/home_2.png");
+}
+.raffleView{
+    -fx-image:url("../icon/ticket-4.png");
+}
+.lottoView{
+    -fx-image:url("../icon/bingo.png");
+}
+#gear{
+    -fx-image:url("../icon/settings.png");
+}
+.button{
+    -fx-font-familly: Arial;
+    -fx-font-size: 22px;
+    -fx-text-fill:white;
+    
+}
+
+.button:hover{
+    -fx-background-color:#5c057f;
+   
+}
+
+.icon{
+    -fx-image:url("../icon/broken-zone.png");
+}
+.icon-text{
+     -fx-font-familly: Arial;
+    -fx-font-size: 20px;
+    -fx-fill:white;  
+    
+}
+.icon-text:hover{
+    -fx-font-familly: Arial;
+    -fx-font-size: 20px;
+    -fx-fill:#5c057f;  
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+    
+}
+.icon:hover{
+     -fx-image:url("../icon/broken-zoneT.png");
+}
+.splitPaneTop{
+    
+     -fx-background-color:linear-gradient(to right, #4169e1 ,#022170);
+    /*#1c4abd*/
+}
+.splitTopContent{
+    -fx-text-fill:white;
+    -fx-font-size:25px;
+    -fx-font-familly:Arial;
+}
+.textArea{
+    -fx-fill:black;
+    -fx-font-size:17px;
+     -fx-font-familly:Arial;
+}
+
+.circularImage{
+    -fx-border-raduis : 10 10 10 10 ;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.sampleText{
+    -fx-font-familly:Arial;
+    -fx-font-size:25px;
+    -fx-fill: dodgerblue;
+}
+
+.button:focused{
+   -fx-background-color:#5c057f;
+}
+.pane:hover{
+    -fx-scale-y:1.1;
+    -fx-scale-x:1.1;
+}
