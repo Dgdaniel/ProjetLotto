@@ -20,8 +20,11 @@ public class Grille {
     private TypeLotto typeLotto;
     private Tirage tirage;
     private LocalDate  dateJeu;
-    Calcul calculation = new Calcul()
-            ;
+    /**
+     * special int i
+     */
+    private  int idOfTyrageNotYetSet;
+    Calcul calculation = new Calcul() ;
     
     public Grille ()
     {
@@ -32,7 +35,7 @@ public class Grille {
             float montantMise, Compte joueur, String Ticket, TypeLotto typeLotto, 
             Tirage tirage, LocalDate datejeu) {
        
-        if (num1 <= 90 && num2 <= 90 && num3 <= 90 && num4 <= 90 && numBonus <= 10) {
+        if (num1 < 91 && num2 < 91 && num3 < 91 && num4 < 91 && numBonus < 10) {
             this.idGrille = idGrille;
             this.num1 = num1;
             this.num2 = num2;
@@ -50,39 +53,38 @@ public class Grille {
         
     }
 
-    public Grille(int num1, int num2, float montantMise, Compte joueur, String Ticket, 
-            TypeLotto typeLotto) {
-        if (num1 <= 90 && num2 <= 90) {
-            this.num1 = num1;
-            this.num2 = num2;
-            this.montantMise = montantMise;
-            this.joueur = joueur;
-            this.Ticket = Ticket;
-            this.typeLotto = typeLotto;
-            
-          
-        }
-
+    public Grille(int idGrille, int num1, int num2, int num3, int num4, int num5, int numBonus, float montantMise, Compte joueur, String Ticket, TypeLotto typeLotto, LocalDate dateJeu) {
+        this.idGrille = idGrille;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.num4 = num4;
+        this.num5 = num5;
+        this.numBonus = numBonus;
+        this.montantMise = montantMise;
+        this.joueur = joueur;
+        this.Ticket = Ticket;
+        this.typeLotto = typeLotto;
+        this.dateJeu = dateJeu;
     }
-
-    public Grille(int num1, int num2, int numBonus, float montantMise, 
-            Compte joueur, String Ticket, TypeLotto typeLotto) {
-        
-        if (num1 <= 90 && num2 <= 90 && numBonus <= 10) {
-            this.num1 = num1;
-            this.num2 = num2;
-            this.numBonus = numBonus;
-            this.montantMise = montantMise;
-            this.joueur = joueur;
-            this.Ticket = Ticket;
-            this.typeLotto = typeLotto;
-        }
+  
     
-    }
+    /**
+     * 
+     * @param num1
+     * @param num2
+     * @param num3
+     * @param num4
+     * @param num5
+     * @param numBonus
+     * @param montantMise
+     * @param joueur
+     * @param typeLotto 
+     */
 
     public Grille(int num1, int num2, int num3, int num4, int num5, int numBonus, float montantMise, 
             Compte joueur,  TypeLotto typeLotto) {
-        if (num1 <= 90 && num2 <= 90 && num3 <= 90 && num4 <= 90 && num5 <= 90 && numBonus <= 10) {
+        if (num1 < 91 && num2 < 91 && num3 < 91 && num4 < 91 && num5 < 91 && numBonus < 10) {
             this.num1 = num1;
             this.num2 = num2;
             this.num3 = num3;
@@ -98,12 +100,72 @@ public class Grille {
         
   
     }
+
+    public Grille(int num1, int num2, float montantMise, Compte joueur, TypeLotto typeLotto) {
+        if (num1 < 91 && num2 < 91) {
+            this.num1 = num1;
+            this.num2 = num2;
+            this.montantMise = montantMise;
+            this.joueur = joueur;
+            this.typeLotto = typeLotto;
+            this.Ticket = calculation.GenererNumeroTicket();
+        }
+
+    }
+
+    public Grille(int num1, int num2, int num3, float montantMise, Compte joueur, TypeLotto typeLotto) {
+         if (num1 < 91 && num2 < 91 && num3 < 91 ) {
+            this.num1 = num1;
+            this.num2 = num2;
+            this.num3 = num3;
+            this.montantMise = montantMise;
+            this.joueur = joueur;
+            this.Ticket = calculation.GenererNumeroTicket();
+            this.typeLotto = typeLotto;
+            
+        }
+    }
+
+    public Grille(int num1, int num2, int num3, int num4, float montantMise, Compte joueur, TypeLotto typeLotto) {
+         if (num1 < 91 && num2 < 91 && num3 < 91 && num4 < 91) {
+            this.num1 = num1;
+            this.num2 = num2;
+            this.num3 = num3;
+            this.num4 = num4;
+            this.montantMise = montantMise;
+            this.joueur = joueur;
+            this.Ticket = calculation.GenererNumeroTicket();
+            this.typeLotto = typeLotto;
+            
+        }
+    }
+    
+    
+    
+    
+    public Grille(int num1, int num2, int num3, int num4, int num5,  float montantMise, 
+            Compte joueur,  TypeLotto typeLotto) {
+        if (num1 < 91 && num2 < 91 && num3 < 91 && num4 < 91 && num5 < 91 ) {
+            this.num1 = num1;
+            this.num2 = num2;
+            this.num3 = num3;
+            this.num4 = num4;
+            this.num5 = num5;
+            this.montantMise = montantMise;
+            this.joueur = joueur;
+            this.Ticket = calculation.GenererNumeroTicket();
+            this.typeLotto = typeLotto;
+            
+        }
+        
+  
+    }
     
     
     
 
     public String getTicket() {
-        return Ticket;
+        return this.Ticket;
     }
 
     public void setTicket(String Ticket) {
@@ -215,6 +277,22 @@ public class Grille {
 
     public void setDateJeu(LocalDate dateJeu) {
         this.dateJeu = dateJeu;
+    }
+
+    public Grille(int idGrille, int num1, int num2, int num3, int num4, int num5, int numBonus, float montantMise, Compte joueur, String Ticket, TypeLotto typeLotto, LocalDate dateJeu, int idOfTyrageNotYetSet) {
+        this.idGrille = idGrille;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.num4 = num4;
+        this.num5 = num5;
+        this.numBonus = numBonus;
+        this.montantMise = montantMise;
+        this.joueur = joueur;
+        this.Ticket = Ticket;
+        this.typeLotto = typeLotto;
+        this.dateJeu = dateJeu;
+        this.idOfTyrageNotYetSet = idOfTyrageNotYetSet;
     }
 
 

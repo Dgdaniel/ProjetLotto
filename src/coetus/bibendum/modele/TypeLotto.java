@@ -29,7 +29,10 @@ public class TypeLotto {
     public void setIdTypeLotto(int idTypeLotto) {
         this.idTypeLotto = idTypeLotto;
     }
-
+/**
+ * lotto ou tombola ou kadoo ou .....
+ * @return libelle 
+ */
     public String getLibelle() {
         return libelle;
     }

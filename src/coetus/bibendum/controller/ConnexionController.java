@@ -1,6 +1,6 @@
 package coetus.bibendum.controller;
 
-import animatefx.animation.LightSpeedIn;
+import animatefx.animation.BounceIn;
 import animatefx.animation.SlideInUp;
 import coetus.bibendum.dao.CompteDao;
 import coetus.bibendum.modele.Compte;
@@ -24,7 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class ConnexionController implements Initializable {
 
@@ -88,10 +87,10 @@ public class ConnexionController implements Initializable {
             checkUser.setStyle("-fx-text-fill: red;");
             checkUser.setText(" Champs vides ");
         }else{
+            
             if ( verifierUtilisateurLogin(pseudoUser, mdpUser) == true ) {
                  Parent appMainMenu = FXMLLoader.load(getClass().getResource("../fxml/appMainMenu.fxml"));
                  logIn = new Compte(connected.getPseudo(), connected.getMotDePasse(), connected.getSolde(), connected.getProprio());
-                
                 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/appMainMenu.fxml"));
                     Parent appMenu = loader.load();
@@ -101,8 +100,9 @@ public class ConnexionController implements Initializable {
                     Scene appMenuScene  = new Scene(appMenu);
                     Stage app_MainMenuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     
-                    new LightSpeedIn(appMainMenu).setDelay(Duration.ONE).play();
+                    new BounceIn(appMainMenu).play();
                     app_MainMenuStage.setScene(appMenuScene);
+                    app_MainMenuStage.centerOnScreen();
                     app_MainMenuStage.show();
                     
             }

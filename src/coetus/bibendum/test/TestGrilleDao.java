@@ -14,6 +14,7 @@ import coetus.bibendum.modele.Grille;
 import coetus.bibendum.modele.Personne;
 import coetus.bibendum.modele.TypeLotto;
 
+
 /**
  *
  * @author Daniel
@@ -22,23 +23,28 @@ public class TestGrilleDao {
     
     public static void main(String[] args) {
         Calcul cal = new Calcul();
-//        Personne p = new Personne( "kakou", "kouronziza",25, "masculin");
-//        Personne falcon = new Personne(1, "canAll", "TheGreatJesus", 15000, "Masculin");
-//         Compte newCompte = new Compte("Frank", "frank052", 15000, falcon);
-//        Grille grille = new Grille(12, 47, 50, 20, 70, 67, 9, newCompte, 
-//                cal.GenererNumeroTicket(), new TypeLotto("TirageImmediat"), LocalDate.now());
-        
+        Personne p = new Personne( "kakou", "kouronziza",25, "masculin");
+        Personne falcon = new Personne(1, "canAll", "TheGreatJesus", 15000, "Masculin");
+         Compte newCompte = new Compte("Frank", "frank052", 15000, falcon);
+        TypeLotto typeLotto = new TypeLotto("LOTTO");
+       Grille grille = new Grille(14, 10, 20, 30, 50, 6, newCompte, typeLotto);
         Personne ya = new Personne("Flava", "Flavien", 25, "Feminin");
         PersonneDao pdao = new PersonneDao();
        // pdao.createPersonne(ya);
         CompteDao cdao = new CompteDao();
         Compte cmake = new Compte("Flavien", "flava254", 15005, ya);
        // cdao.creerCompte(cmake);
-        Grille g = new Grille(14, 80, 88, 72, 24, 9, 400, cmake, new TypeLotto("Kadoo"));
+        Grille g = new Grille(14, 80, 88, 72, 24, 400, cmake, new TypeLotto("LOTTO"));
+//         Grille goGrille = new Grille(14, 1, 8, 7, 24, 7, 400, cmake, new TypeLotto("LOTTO"));
         GrilleDao grilleDao = new GrilleDao();
-        grilleDao.creerGrille(g);
+        grilleDao.creerSampleGrille(g);
+//        grilleDao.creerSampleGrille(goGrille);
         System.out.println(cal.GenererNumeroBonus());
         
+        for (Grille arg : grilleDao.getAll()) {
+            System.out.println(arg);
+        }
+
 
     }
 }

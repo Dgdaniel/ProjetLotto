@@ -111,7 +111,10 @@ public class Calcul {
      * suite
      */
     /**
-     *
+     ** Cette methode permet de savoir si la position du jeu jouer par le joueur
+     * est le meme que celui de la grille. C'est a dire que la premiere case du
+     * jeu de l'utilisateur correspond a la premiere case du tirage et ainsi de
+     * suite
      * @param tableauJoueur
      * @param tirage
      * @return
@@ -134,7 +137,7 @@ public class Calcul {
             }
 
         }
-        return nombreDeFoisNumeroTrouverAvecPositionTirageExacte;
+        return nombreDeFoisQuILATrouberLeBonNumero;
 
     }
 
@@ -192,17 +195,17 @@ public class Calcul {
         return foundArrayList;
     }
 
-    public float matchDexuPrix(int sizeOfPlayerTable, float laMiseDuJoueur) {
+    public float matchDeuxPrix(int sizeOfPlayerTable, float laMiseDuJoueur, int parie ) {
         prixGagner = 0F;
-        if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000) {
+        if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000 && parie == sizeOfPlayerTable) {
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000) {
+        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000 && parie == sizeOfPlayerTable) {
             valeurGrille = 60;
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000) {
+        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000 && parie == sizeOfPlayerTable) {
             valeurGrille = 65;
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000) {
+        } else if (sizeOfPlayerTable == 2 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000 && parie == sizeOfPlayerTable) {
             valeurGrille = 85;
             prixGagner = laMiseDuJoueur * valeurGrille;
         } else {
@@ -213,18 +216,18 @@ public class Calcul {
         return prixGagner;
     }
 
-    public float matchTroisPrix(int sizeOfPlayerTable, float laMiseDuJoueur) {
+    public float matchTroisPrix(int sizeOfPlayerTable, float laMiseDuJoueur , int parie) {
         prixGagner = 25F;
-        if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000) {
+        if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000 && parie == sizeOfPlayerTable) {
             valeurGrille = 55;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000) {
+        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000 && parie == sizeOfPlayerTable) {
             valeurGrille = 62;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000) {
+        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000 && parie == sizeOfPlayerTable) {
             valeurGrille = 67;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000) {
+        } else if (sizeOfPlayerTable == 3 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000 && parie == sizeOfPlayerTable) {
             valeurGrille = 86;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
 
@@ -235,18 +238,18 @@ public class Calcul {
         return prixGagner;
     }
 
-    public float matchPrixQuatre(int sizeOfPlayerTable, float laMiseDuJoueur) {
+    public float matchPrixQuatre(int sizeOfPlayerTable, float laMiseDuJoueur , int parie) {
         prixGagner = 50F;
-        if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000) {
+        if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000 && parie == sizeOfPlayerTable) {
             valeurGrille = 60;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000) {
+        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000 && parie == sizeOfPlayerTable) {
             valeurGrille = 63;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000) {
+        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000 && parie == sizeOfPlayerTable) {
             valeurGrille = 68;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
-        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000) {
+        } else if (sizeOfPlayerTable == 4 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000 && parie == sizeOfPlayerTable) {
             valeurGrille = 89;
             prixGagner = laMiseDuJoueur * valeurGrille + prixGagner;
 
@@ -258,18 +261,18 @@ public class Calcul {
         return prixGagner;
     }
 
-    public float matchCinqPrix(int sizeOfPlayerTable, float laMiseDuJoueur) {
+    public float matchCinqPrix(int sizeOfPlayerTable, float laMiseDuJoueur, int parie ) {
         prixGagner = 67F;
-        if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000) {
+        if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 0 && laMiseDuJoueur <= 1000 && parie == sizeOfPlayerTable) {
             valeurGrille = 67;
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000) {
+        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 999 && laMiseDuJoueur <= 10000 && parie == sizeOfPlayerTable) {
             valeurGrille = 70;
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000) {
+        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 99999 && laMiseDuJoueur <= 100000 && parie == sizeOfPlayerTable) {
             valeurGrille = 95;
             prixGagner = laMiseDuJoueur * valeurGrille;
-        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000) {
+        } else if (sizeOfPlayerTable == 5 && laMiseDuJoueur > 999999 && laMiseDuJoueur <= 1000000 && parie == sizeOfPlayerTable) {
             valeurGrille = 97;
             prixGagner = laMiseDuJoueur * valeurGrille;
 
@@ -283,6 +286,114 @@ public class Calcul {
     }
     
     
+    public float givePriceTotheWinner(int nombreDefoisTouver,int sizeOfPlayerTable, float laMiseDuJoueur , int parie){
+        float price = 0;
+        switch (nombreDefoisTouver) {
+            case 2:
+                switch (sizeOfPlayerTable) {
+                    case 2:
+                        price = matchDeuxPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 3:
+                        price = matchTroisPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 4:
+                        price = matchPrixQuatre(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 5:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 6:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                }
+
+                break;
+            case 3:
+                switch (sizeOfPlayerTable) {
+                    case 2:
+                        price = matchDeuxPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 3:
+                        price = matchTroisPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 4:
+                        price = matchPrixQuatre(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 5:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 6:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                }
+                break;
+
+            case 4:
+                switch (sizeOfPlayerTable) {
+                    case 2:
+                        price = matchDeuxPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 3:
+                        price = matchTroisPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 4:
+                        price = matchPrixQuatre(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 5:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 6:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                }
+                break;
+            case 5:
+                switch (sizeOfPlayerTable) {
+                    case 2:
+                        price = matchDeuxPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 3:
+                        price = matchTroisPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 4:
+                        price = matchPrixQuatre(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 5:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 6:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                }
+                break;
+
+            case 6:
+                switch (sizeOfPlayerTable) {
+                    case 2:
+                        price = matchDeuxPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 3:
+                        price = matchTroisPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 4:
+                        price = matchPrixQuatre(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 5:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                    case 6:
+                        price = matchCinqPrix(sizeOfPlayerTable, laMiseDuJoueur, parie);
+                        break;
+                }
+                break;
+
+        }
+    
+        return price;
+
+        
+    }
 //    public void tranfererPrixGagner(float prix, Compte destinataire){
 //        
 //    }

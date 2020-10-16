@@ -16,12 +16,51 @@ public class Tirage {
     private int idTirage;
     private int numtir1, numtir2, numtir3, numtir4, numtir5, numtirbonus;
     private LocalDate datetirage;
+    private String typeJouer;
     private String jourTirage;
 
     public Tirage() {
 
     }
 
+    public Tirage(int idTirage, int numtir1, int numtir2, int numtir3, int numtir4, int numtir5, int numtirbonus, LocalDate datetirage, String typeJouer, String jourTirage) {
+        this.idTirage = idTirage;
+        this.numtir1 = numtir1;
+        this.numtir2 = numtir2;
+        this.numtir3 = numtir3;
+        this.numtir4 = numtir4;
+        this.numtir5 = numtir5;
+        this.numtirbonus = numtirbonus;
+        this.datetirage = datetirage;
+        this.typeJouer = typeJouer;
+        this.jourTirage = jourTirage;
+    }
+
+    public Tirage(int numtir1, int numtir2, int numtir3, int numtir4, int numtir5, int numtirbonus, LocalDate datetirage, String typeJouer, String jourTirage) {
+        this.numtir1 = numtir1;
+        this.numtir2 = numtir2;
+        this.numtir3 = numtir3;
+        this.numtir4 = numtir4;
+        this.numtir5 = numtir5;
+        this.numtirbonus = numtirbonus;
+        this.datetirage = datetirage;
+        this.typeJouer = typeJouer;
+       this.jourTirage = RecevoirJourDeLaSemaine(LocalDate.now().getDayOfWeek().ordinal());
+    }
+
+    
+    
+    
+    /**
+     * 
+     * @param idTirage
+     * @param numtir1
+     * @param numtir2
+     * @param numtir3
+     * @param numtir4
+     * @param numtir5
+     * @param numtirbonus 
+     */
     public Tirage(int idTirage, int numtir1, int numtir2, int numtir3, int numtir4, int numtir5, int numtirbonus) {
         if (numtir1 <= 90 && numtir2 <= 90 && numtir3 <= 90 && numtir4 <= 90 && numtir5 <= 90 && numtirbonus <= 10) {
             this.idTirage = idTirage;
@@ -217,6 +256,14 @@ public class Tirage {
          String tab [] = new String [] {"LUNDI","MARDI", "MERCREDI","JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"};
         String jourDeLaSemaine;
         return jourDeLaSemaine = tab[DayOfWeek];
+    }
+
+        public String getTypeJouer() {
+        return typeJouer;
+    }
+
+    public void setTypeJouer(String typeJouer) {
+        this.typeJouer = typeJouer;
     }
 
 }

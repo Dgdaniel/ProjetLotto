@@ -7,6 +7,7 @@ package coetus.bibendum.test;
 
 import java.time.LocalDateTime;
 
+
 /**
  *
  * @author Daniel
@@ -23,8 +24,12 @@ public class TestCalculation {
 //         System.out.println( tab[LocalDate.now().getDayOfWeek().ordinal()]);
 
     int minute = LocalDateTime.now().getMinute();
-    
-        System.out.println(minute);
+    LocalDateTime d = LocalDateTime.now();
+        System.out.println(d);
+ 
+//        if (LocalDateTime.of( d.toLocalDate(), (d.getSecond()+ 5) )) {
+//            System.out.println(LocalDateTime.now());
+//        }
         
     }
 }

@@ -22,9 +22,12 @@ public class TestCompteDao {
         Compte c = new Compte("greg", "GrassWilk", 14500, falcon);
         PersonneDao pdao = new PersonneDao();
         Personne person = new Personne(2, "Frankeinstein", "king", 35, "Masculin");
-
+   CompteDao dao = new CompteDao();
         Compte newCompte = new Compte("Frank", "frank052", 15000, person);
-        CompteDao dao = new CompteDao();
+        System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
+        newCompte.setPrixGagner(2000);
+     
+        dao.updateCompte(newCompte);
         
         System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
 //        System.out.println(dao.verifierPseudo("Frank"));

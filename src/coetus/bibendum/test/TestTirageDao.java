@@ -66,7 +66,7 @@ public class TestTirageDao {
        Tirage gt = new Tirage(getIt [0], getIt [1], getIt[2], getIt[3], getIt[4], 
                cal.GenererNumeroBonus(),RetreiveDayNameInFrench(LocalDate.now().getDayOfWeek().ordinal()) );
        
-       
+       Tirage tg = new Tirage(getIt [0], getIt [1], getIt[2], getIt[3], getIt[4], cal.GenererNumeroBonus(), LocalDate.now(), "LOTTO", RetreiveDayNameInFrench(LocalDate.now().getDayOfWeek().ordinal()));
 //               ;
 //      
 //       int get [] = cal.genererTirage();
@@ -80,24 +80,30 @@ public class TestTirageDao {
 //        System.out.println("\n"+teo+"\n"+fv);
         TirageDao daotirage = new TirageDao();
         
-        Tirage g = daotirage.getByDateTirage(LocalDate.of(2020,9, 13));
-       
-        Tirage f = daotirage.getByHourMinuteAndMounth(9, 9, 12, 31, 7);
-     
-        
-        
-        System.out.println(f);
+        Tirage g = daotirage.getByDateTirage(LocalDate.now());
         System.out.println(g);
+       
+//        Tirage f = daotirage.getByHourMinuteAndMounth(9, 9, 12, 31, 7);
+//            for (Tirage tirage : daotirage.getAll()) {
+//                System.out.println(tirage);
+//        }
         
-        for (int i = 0; i < 10; i++) {
-               int mois = LocalDate.now().getMonthValue();
-            int minute = LocalDateTime.now().getMinute();
-            int heure = LocalDateTime.now().getHour();
-            int seconde = LocalDateTime.now().getSecond();
-            int jour = LocalDate.now().getDayOfMonth();
-            
-            System.out.println(mois +"\t"+jour+"\t"+heure+"\t"+minute+"\t"+seconde);
-        }
+//                System.out.println(daotirage.getTirage("LOTTO"));
+        
+//        daotirage.creerTirageBefore(tg);
+        
+//        System.out.println(f);
+//        System.out.println(g);
+        
+//        for (int i = 0; i < 10; i++) {
+//               int mois = LocalDate.now().getMonthValue();
+//            int minute = LocalDateTime.now().getMinute();
+//            int heure = LocalDateTime.now().getHour();
+//            int seconde = LocalDateTime.now().getSecond();
+//            int jour = LocalDate.now().getDayOfMonth();
+//            
+//            System.out.println(mois +"\t"+jour+"\t"+heure+"\t"+minute+"\t"+seconde);
+//        }
 
 //        Tirage k = tirageDao.getById(1);
 //       

@@ -22,12 +22,12 @@ import java.util.logging.Logger;
  * @author Daniel
  */
 public class CompteDao {
-    /*
-    --------------------------------------------------------------------------
-    Cette methode permet de creer un compte avec une personne existante ou non
-    --------------------------------------------------------------------------
-    */
-    
+   
+    /**
+     *  Cette methode permet de creer un compte avec une personne existante ou non
+     * @param unCompte
+     * @return 
+     */
     public boolean creerComptePersonne(Compte unCompte)
     {
          int b = 1;
@@ -83,12 +83,13 @@ public class CompteDao {
         return true ? b> 0 : false;
     }
     
-    /*
-    ----------------------------------------------------------------------------
-    Cette methode permet de creer un compte
-    ----------------------------------------------------------------------------
-    */
     
+    
+    /**
+     *  Cette methode permet de creer un compte
+     * @param unCompte
+     * @return 
+     */
     public boolean creerCompte(Compte unCompte) {
         int b = 0;
         boolean bool = verifierPseudo(unCompte.getPseudo());
@@ -128,7 +129,11 @@ public class CompteDao {
 
         return true ? b > 0 : false;
     }
-    
+    /**
+     * 
+     * @param Id
+     * @return 
+     */
        
     public Compte getById(int Id) {
         Connection connection = Connexion.getConnexion();
@@ -170,12 +175,12 @@ public class CompteDao {
         return compte;
     }
        
-       /*
-       -------------------------------------------------------------------------
-       Cette methode retourne un personne en prenant en parametre son pseudo
-       -------------------------------------------------------------------------
-       */
        
+      /**
+       * Cette methode retourne un personne en prenant en parametre son pseudo
+       * @param pseudoAverifier
+       * @return 
+       */ 
      public boolean verifierPseudo(String pseudoAverifier) {
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
@@ -433,4 +438,46 @@ Cette methode permet de supprimer un compte
            return compte;
        }
     }
+    
+    public boolean updateCompte(Compte unCompte){
+        Connection connection = Connexion.getConnexion();
+        PreparedStatement preparedStatement = null;
+        Compte compte = new Compte();
+        compte = getBypseudo(unCompte.getPseudo());
+        String sql = "update compte  set motDePasse = ?, prixGagner = ? , solde = ? where idCompte = ? ";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            preparedStatement.setString(1, unCompte.getMotDePasse());
+            if (unCompte.getPrixGagner() != 0) {
+                preparedStatement.setFloat(2, compte.getPrixGagner());
+            } else {
+                preparedStatement.setString(2, null);
+            }
+            preparedStatement.setFloat(3, unCompte.getSolde());
+
+            preparedStatement.setInt(4, compte.getIdCompte());
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int b = 0;
+        try {
+            b = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (b>0) {
+            System.out.println(" Depot effectuer ");
+       }
+        
+      return true ? b>0 : false;
+    }
+    
+   
 }
+
+
