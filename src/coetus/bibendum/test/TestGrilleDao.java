@@ -37,7 +37,8 @@ public class TestGrilleDao {
         Grille g = new Grille(14, 80, 88, 72, 24, 400, cmake, new TypeLotto("LOTTO"));
 //         Grille goGrille = new Grille(14, 1, 8, 7, 24, 7, 400, cmake, new TypeLotto("LOTTO"));
         GrilleDao grilleDao = new GrilleDao();
-        grilleDao.creerSampleGrille(g);
+        System.out.println(grilleDao.getById(grille));
+        //grilleDao.creerSampleGrille(g);
 //        grilleDao.creerSampleGrille(goGrille);
         System.out.println(cal.GenererNumeroBonus());
         

@@ -99,7 +99,7 @@ public class AppMainMenuController implements Initializable {
                 Pane view = setting.load();
                 SettingController settingController = setting.getController();
                 settingController.utilisateurConnecte(connected);
-
+              
                 new FadeInRight(view).play();
                 BorderPaneView.setCenter(view);
 

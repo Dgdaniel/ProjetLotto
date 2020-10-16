@@ -5,9 +5,11 @@
  */
 package coetus.bibendum.test;
 
+import coetus.bibendum.controller.SettingController;
 import coetus.bibendum.dao.CompteDao;
 import coetus.bibendum.dao.PersonneDao;
 import coetus.bibendum.modele.Compte;
+import coetus.bibendum.modele.GrilleSimple;
 import coetus.bibendum.modele.Personne;
 
 /**
@@ -26,10 +28,14 @@ public class TestCompteDao {
         Compte newCompte = new Compte("Frank", "frank052", 15000, person);
         System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
         newCompte.setPrixGagner(2000);
-     
-        dao.updateCompte(newCompte);
-        
-        System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
+            SettingController sc = new SettingController();
+            
+            for (GrilleSimple object : SettingController.Liste(newCompte)) {
+                System.out.println(object.getDatejeu());
+        }
+//        dao.updateCompte(newCompte);
+//        
+//        System.out.println(dao.getByPseudoPassWord("Frank", "frank052"));
 //        System.out.println(dao.verifierPseudo("Frank"));
 //        dao.creerCompte(newCompte);
        // dao.creerCompte(c);

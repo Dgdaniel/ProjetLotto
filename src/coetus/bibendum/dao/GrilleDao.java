@@ -7,6 +7,7 @@ package coetus.bibendum.dao;
 
 import coetus.bibendum.connexion.Connexion;
 import coetus.bibendum.modele.Calcul;
+import coetus.bibendum.modele.Compte;
 import coetus.bibendum.modele.Grille;
 import coetus.bibendum.modele.Tirage;
 import java.sql.Connection;
@@ -281,6 +282,7 @@ public class GrilleDao {
     }
     
    public Grille getByNumeroTicket(String numeroTicket){
+       
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
         Grille grille = null;
@@ -337,7 +339,64 @@ public class GrilleDao {
    }
    
    
-   public void getTirage(){
+   public Grille getById(Grille uneGrille){
+        Connection connection = Connexion.getConnexion();
+        PreparedStatement preparedStatement = null;
+        Compte getCompte = new Compte();
+        CompteDao compteDao = new CompteDao();
+        getCompte = compteDao.getBypseudo(uneGrille.getJoueur().getPseudo());
+        Grille grille = null;
+        String  retreive = "select * from grille where idCompte = ?  ";
+        
+        try {
+            preparedStatement = connection.prepareStatement(retreive);
+        } catch (SQLException ex) {
+            Logger.getLogger(GrilleDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            preparedStatement.setInt(1,getCompte.getIdCompte());
+        } catch (SQLException ex) {
+            Logger.getLogger(GrilleDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ResultSet res = null;
+        
+        try {
+            res = preparedStatement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(GrilleDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        try {
+            
+            while (res.next()) {
+
+                grille =    new Grille(res.getInt(1),
+                                res.getInt(3),
+                                res.getInt(4),
+                                res.getInt(5),
+                                res.getInt(6),
+                                res.getInt(7),
+                                res.getInt(10),
+                                res.getFloat(2),
+                                new CompteDao().getById(res.getInt(11)),
+                                res.getString(8),
+                                new TypeLottoDao().getById(res.getInt(12)),
+                                new TirageDao().getById(res.getInt(13)),
+                                res.getDate(9).toLocalDate());
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GrilleDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException npe){
+            System.err.println(npe.getMessage());
+            npe.printStackTrace();
+            
+        }
+        
+        return  grille;
+       
        
    }
 }

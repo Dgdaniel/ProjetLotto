@@ -55,7 +55,7 @@
           <TableColumn fx:id="utilisateurTableJeux" prefWidth="300.0" text="Jeux" />
             <TableColumn fx:id="utilisateurTableResultatJeux" prefWidth="300.0" text="Resultat Jeu" />
             <TableColumn fx:id="utilisateurTableTicket" minWidth="198.0" prefWidth="300.0" text="Ticket" />
-            <TableColumn minWidth="300.0" prefWidth="163.199951171875" text="Date Jeu" />
+            <TableColumn fx:id="utilisateurDateJeu" minWidth="300.0" prefWidth="163.199951171875" text="Date Jeu" />
         </columns>
          <effect>
             <DropShadow color="#cccccc" height="50.0" radius="24.5" spread="0.5" width="50.0" />
