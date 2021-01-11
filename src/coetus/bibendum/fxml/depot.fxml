@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="330.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coetus.bibendum.controller.TombolaController">
+    <stylesheets>
+        <URL value="@/coetus/bibendum/css/tombola.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutY="12.0" prefHeight="50.0" prefWidth="425.0" style="-fx-background-color: #5c057f;" stylesheets="@../css/resetprofile.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="#eae3e3" fontSmoothingType="LCD" layoutX="140.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Depot">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="labelDepot" focusColor="DODGERBLUE" labelFloat="true" layoutX="35.0" layoutY="145.0" prefHeight="45.0" prefWidth="256.0" promptText="Montant depot">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="annuler" layoutX="25.0" layoutY="294.0" onAction="#annuler" prefHeight="26.0" prefWidth="120.0" stylesheets="@../css/resetprofile.css" text="Annuler" />
+      <JFXButton fx:id="depot" layoutX="180.0" layoutY="296.0" onAction="#faireDepot" prefHeight="26.0" prefWidth="120.0" stylesheets="@../css/resetprofile.css" text="Depot" />
+   </children>
+</AnchorPane>

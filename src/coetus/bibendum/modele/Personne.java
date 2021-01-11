@@ -5,79 +5,86 @@
  */
 package coetus.bibendum.modele;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Daniel
  */
 public class Personne {
-    private int idpersonne;
-    private String nom, prenom;
-    private int age;
-    private String sexe;
+    private SimpleIntegerProperty idpersonne;
+    private SimpleStringProperty nom, prenom;
+    private SimpleIntegerProperty age;
+    private SimpleStringProperty sexe;
     
     public Personne()
     {
         
     }
 
-    public Personne(int idpersonne, String nom, String prenom, int age ,String sexe) 
-    {
-        this.age = age;
+    public Personne(SimpleIntegerProperty idpersonne, SimpleStringProperty nom, SimpleStringProperty prenom, SimpleIntegerProperty age, SimpleStringProperty sexe) {
         this.idpersonne = idpersonne;
         this.nom = nom;
         this.prenom = prenom;
+        this.age = age;
         this.sexe = sexe;
     }
 
-    public Personne(String nom, String prenom, int age, String sexe) {
+    public Personne(SimpleStringProperty nom, SimpleStringProperty prenom, SimpleIntegerProperty age, SimpleStringProperty sexe) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
         this.sexe = sexe;
     }
-    
-    
 
-    public int getIdpersonne() {
+    public Personne(SimpleStringProperty nom, SimpleStringProperty prenom, SimpleIntegerProperty age) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+    }
+
+    public SimpleIntegerProperty getIdpersonne() {
         return idpersonne;
     }
 
-    public void setIdpersonne(int idpersonne) {
+    public void setIdpersonne(SimpleIntegerProperty idpersonne) {
         this.idpersonne = idpersonne;
     }
 
-    public String getNom() {
+    public SimpleStringProperty getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(SimpleStringProperty nom) {
         this.nom = nom;
     }
 
-    public String getPrenom() {
+    public SimpleStringProperty getPrenom() {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
+    public void setPrenom(SimpleStringProperty prenom) {
         this.prenom = prenom;
     }
 
-    public String getSexe() {
-        return sexe;
-    }
-
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
-    }
-
-    public int getAge() {
+    public SimpleIntegerProperty getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(SimpleIntegerProperty age) {
         this.age = age;
     }
-    
+
+    public SimpleStringProperty getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(SimpleStringProperty sexe) {
+        this.sexe = sexe;
+    }
+
+   
     
 
     @Override

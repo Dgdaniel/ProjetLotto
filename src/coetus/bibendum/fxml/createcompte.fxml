@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coetus.bibendum.controller.CreatecompteController">
+    <stylesheets>
+        <URL value="@/coetus/bibendum/css/connexion.css" />
+    </stylesheets>
+   <children>
+      <ImageView id="affichage{" fitHeight="724.0" fitWidth="1138.0" layoutX="-65.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 5px;">
+         <image>
+            <Image url="@../icon/casino-1.jpg" />
+         </image>
+         <effect>
+            <Glow level="0.12" />
+         </effect>
+      </ImageView>
+      <JFXTextField id="affichage" fx:id="nom" focusColor="DODGERBLUE" labelFloat="true" layoutX="58.0" layoutY="73.0" prefHeight="45.0" prefWidth="250.0" promptText="Nom" style="-fx-padding: 5px;" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="prenom" focusColor="DODGERBLUE" labelFloat="true" layoutX="56.0" layoutY="171.0" prefHeight="45.0" prefWidth="250.0" promptText="Prenom" style="-fx-padding: 5px;" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="sexe" focusColor="DODGERBLUE" labelFloat="true" layoutX="57.0" layoutY="360.0" prefHeight="45.0" prefWidth="250.0" promptText="Sexe" style="-fx-padding: 5px;" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="age" focusColor="DODGERBLUE" labelFloat="true" layoutX="57.0" layoutY="263.0" prefHeight="45.0" prefWidth="250.0" promptText="Age" style="-fx-padding: 5px;" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="pseudo" focusColor="DODGERBLUE" labelFloat="true" layoutX="683.0" layoutY="79.0" prefHeight="45.0" prefWidth="250.0" promptText="Pseudo" style="-fx-padding: 5px;" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="createCompte" layoutX="445.0" layoutY="599.0" onAction="#createUnCompte" prefHeight="40.0" prefWidth="250.0" styleClass="connexion" stylesheets="@../css/connexion.css" text="Creer Compte" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="seConnecter" layoutX="742.0" layoutY="600.0" onAction="#seconnecter" prefHeight="40.0" prefWidth="250.0" styleClass="connexion" stylesheets="@../css/connexion.css" text="Se Connecter" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXPasswordField fx:id="mdp" focusColor="DODGERBLUE" labelFloat="true" layoutX="681.0" layoutY="176.0" prefHeight="45.0" prefWidth="250.0" promptText="MotDePasse" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="confMdp" focusColor="DODGERBLUE" labelFloat="true" layoutX="681.0" layoutY="280.0" prefHeight="45.0" prefWidth="250.0" promptText="MotDePasse" styleClass="affichage" stylesheets="@../css/connexion.css">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </JFXPasswordField>
+   </children>
+</AnchorPane>

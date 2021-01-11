@@ -1,14 +1,15 @@
 
 package coetus.bibendum.controller;
 
+import animatefx.animation.SlideInUp;
 import coetus.bibendum.connexion.Connexion;
 import coetus.bibendum.dao.CompteDao;
 import coetus.bibendum.dao.TirageDao;
 import coetus.bibendum.modele.Compte;
-import coetus.bibendum.modele.Grille;
 import coetus.bibendum.modele.GrilleSimple;
 import coetus.bibendum.modele.Tirage;
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,12 +20,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -244,12 +251,56 @@ public class SettingController implements Initializable {
         this.userConnected = userConnected;
     }
     
+    @FXML
+    void FaireDepot(ActionEvent event) {
+
+    }
+
+    @FXML
+    void FaireRetrait(ActionEvent event) {
+
+    }
+
+    @FXML
+    void FaireTransfert(ActionEvent event) {
+
+    }
+
+    @FXML
+    void modifier(ActionEvent event) {
+          try {
+                     
+                     Stage stage = new Stage();
+                     FXMLLoader reSetView = new FXMLLoader(getClass().getResource("../fxml/resetprofile.fxml"));
+                     Pane resetProfilePane = reSetView.load();
+                     
+                     ReSetProfileController reSetProfileController = reSetView.getController();
+                     Compte logIn = new Compte(userConnected.getPseudo(), userConnected.getMotDePasse(), userConnected.getSolde(), userConnected.getProprio());
+                     reSetProfileController.setUserConnectedCompte(logIn);
+                     new SlideInUp(resetProfilePane).play();
+                     
+                     Scene scene = new Scene(resetProfilePane);
+                     Image image = new Image("/coetus/bibendum/icon/settings.png");
+                     stage.setScene(scene);
+                     stage.getIcons().add(image);
+                     stage.setTitle("Parametre");
+                     stage.setResizable(false);
+                     stage.show();
+                   
+                 } catch (IOException e) {
+                     System.err.println(e.getMessage());
+                     System.err.println(e.getLocalizedMessage());
+                     e.printStackTrace();
+                 }
+        
+    }
+
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       //  utilisateurConnecte(userConnected);
-         
+  
        
        
        

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bibendum">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/bibendum.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

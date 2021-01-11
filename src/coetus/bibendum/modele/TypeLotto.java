@@ -5,41 +5,49 @@
  */
 package coetus.bibendum.modele;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Daniel
  */
 public class TypeLotto {
-    private int idTypeLotto;
-    private String libelle;
+    private SimpleIntegerProperty idTypeLotto;
+    private SimpleStringProperty libelle;
 
-    public TypeLotto(int idTypeLotto, String libelle) {
+    public TypeLotto(SimpleIntegerProperty idTypeLotto, SimpleStringProperty libelle) {
         this.idTypeLotto = idTypeLotto;
         this.libelle = libelle;
     }
 
-    public TypeLotto(String libelle) {
+    public TypeLotto(SimpleStringProperty libelle) {
         this.libelle = libelle;
     }
 
-    public int getIdTypeLotto() {
+    public SimpleIntegerProperty getIdTypeLotto() {
         return idTypeLotto;
     }
 
-    public void setIdTypeLotto(int idTypeLotto) {
+    public void setIdTypeLotto(SimpleIntegerProperty idTypeLotto) {
         this.idTypeLotto = idTypeLotto;
     }
+
+    public SimpleStringProperty getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(SimpleStringProperty libelle) {
+        this.libelle = libelle;
+    }
+
+    
+   
 /**
  * lotto ou tombola ou kadoo ou .....
  * @return libelle 
  */
-    public String getLibelle() {
-        return libelle;
-    }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
 
     @Override
     public String toString() {

@@ -1,6 +1,7 @@
 package coetus.bibendum.controller;
 
-import animatefx.animation.BounceIn;
+
+
 import animatefx.animation.SlideInUp;
 import coetus.bibendum.dao.CompteDao;
 import coetus.bibendum.modele.Compte;
@@ -66,12 +67,11 @@ public class ConnexionController implements Initializable {
     public CompteDao compteDao;
 
     
-    
-   
+
 
     @FXML
     void handleForgottenPassword(MouseEvent event) {
-
+            System.out.println(" ok veuillez attendre les prochaines ");
     }
 
     @FXML
@@ -100,7 +100,7 @@ public class ConnexionController implements Initializable {
                     Scene appMenuScene  = new Scene(appMenu);
                     Stage app_MainMenuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     
-                    new BounceIn(appMainMenu).play();
+                    new SlideInUp(appMainMenu).play();
                     app_MainMenuStage.setScene(appMenuScene);
                     app_MainMenuStage.centerOnScreen();
                     app_MainMenuStage.show();
@@ -113,11 +113,13 @@ public class ConnexionController implements Initializable {
 
     @FXML
     void handlebtnCreerUnCompte(ActionEvent event) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("/coetus/bibendum/fxml/inscription.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("/coetus/bibendum/fxml/createcompte.fxml"));
         Scene nouveauScene = new Scene(view);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         new SlideInUp(view).play();
+        app_stage.setTitle("Aleam-Lotto Connexion");
         app_stage.setScene(nouveauScene);
+        app_stage.setResizable(false);
         app_stage.show();
     }
 

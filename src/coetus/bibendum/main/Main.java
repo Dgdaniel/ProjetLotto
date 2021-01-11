@@ -23,17 +23,17 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/connexion.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/appMainMenu.fxml"));
         Scene scene = new Scene(parent);
         
         primaryStage.setScene(scene);
         primaryStage.setTitle("Aleam Lotto");
         Image image = new Image("/coetus/bibendum/icon/broken-zoneT.png");
         primaryStage.getIcons().add(image);
-       primaryStage.setMaxWidth(Double.MAX_VALUE);
+        primaryStage.setMaxWidth(Double.MAX_VALUE);
         primaryStage.initStyle(StageStyle.DECORATED);
         
-        new  FadeIn(parent).setCycleCount(1).setDelay(Duration.seconds(1)).play();
+        new  FadeIn(parent).setDelay(Duration.seconds(1)).play();
         primaryStage.centerOnScreen();
         
         

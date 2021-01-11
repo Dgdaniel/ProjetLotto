@@ -83,8 +83,12 @@
 .tableView{
     -fx-background-color : #fff;
       -fx-text-fill:white;
-    -fx-font-size:25px;
+    -fx-font-size:18px;
     -fx-font-familly:Shruti;
       -fx-alignment:CENTER;
    
+}
+
+#row{
+    -fx-alignment: CENTER;
 }

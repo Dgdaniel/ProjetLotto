@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coetus.bibendum.test;
+
 
 import coetus.bibendum.modele.Calcul;
 import java.time.LocalDate;

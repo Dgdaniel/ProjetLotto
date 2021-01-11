@@ -22,7 +22,7 @@ public class TirageDao {
     public boolean creerTirage(Tirage unTirage) {
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
-        String sql = "insert into tirage(num1, num2, num3, num4, num5, numTirageBonus, jourTirage) values (?,?,?,?,?,?,?)";
+        String sql = "insert into tirage(num1, num2, num3, num4, num5, numTirageBonus, jourTirage, TypeLotto) values (?,?,?,?,?,?,?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class TirageDao {
             preparedStatement.setInt(5, unTirage.getNumtir5());
             preparedStatement.setInt(6, unTirage.getNumtirbonus());
             preparedStatement.setString(7, unTirage.getJourTirage());
+            preparedStatement.setString(8, unTirage.getTypeJouer());
 
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,8 +94,9 @@ public class TirageDao {
         }
         try {
             while (res.next()) {
-                tirageRecu = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4), res.getInt(5), res.getInt(6),
-                        res.getInt(7), res.getInt(8), res.getDate(2).toLocalDate(), res.getString(9));
+                tirageRecu = new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,9 +144,9 @@ public class TirageDao {
         }
         try {
             while (res.next()) {
-                lofTirage.add(new Tirage(res.getInt(1), res.getInt(3), res.getInt(4), res.getInt(5),
-                        res.getInt(6), res.getInt(7), res.getInt(8),
-                        res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage")
+                lofTirage.add( new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto")
                 ));
             }
         } catch (SQLException ex) {
@@ -231,9 +233,9 @@ public class TirageDao {
 
         try {
             while (res.next()) {
-                retreive = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4),
-                         res.getInt(5), res.getInt(6), res.getInt(7), res.getInt(8),
-                        res.getDate(2).toLocalDate(), res.getString(9));
+                retreive   = new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,7 +249,7 @@ public class TirageDao {
        par sa date 
     ---------------------------------
      */
-    public Tirage getByDateTirage(LocalDate date) {
+    public Tirage getByDateTirageSample(LocalDate date) {
 
         Connection con = Connexion.getConnexion();
         PreparedStatement statement = null;
@@ -275,9 +277,9 @@ public class TirageDao {
 
         try {
             while (res.next()) {
-                retreive = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4),
-                         res.getInt(5), res.getInt(6), res.getInt(7), res.getInt(8),
-                        res.getDate(2).toLocalDate(), res.getString(9));
+                retreive =   new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,8 +321,9 @@ public class TirageDao {
 
         try {
             while (res.next()) {
-                fresh = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4), res.getInt(5),
-                        res.getInt(6), res.getInt(7), res.getDate(2).toLocalDate(), res.getString(8));
+                fresh =  new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -371,9 +374,9 @@ public class TirageDao {
         try {
 
             while (res.next()) {
-                fresh = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4),
-                        res.getInt(5), res.getInt(6), res.getInt(7), res.getInt(8),
-                        res.getDate(2).toLocalDate(), res.getString(9));
+                fresh =  new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
             }
 
         } catch (SQLException ex) {
@@ -604,10 +607,12 @@ public class TirageDao {
 
         try {
             while (res.next()) {
-                n = new Tirage(res.getInt(1), res.getInt(3), res.getInt(4), res.getInt(5),
-                        res.getInt(6), res.getInt(7), res.getDate(2).toLocalDate(),
-                        res.getString(8), res.getString(9));
-
+            
+                    n = new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
+        
+                    
             }
         } catch (SQLException ex) {
             Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -619,7 +624,7 @@ public class TirageDao {
       public Tirage getTirageSample() {
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
-        String sql = " select *  from tirage where  idTyrage in (select max(idTyrage) from tirage )";
+        String sql = " select *  from tirage where  idTyrage = (select max(idTyrage) from tirage ) and TypeLotto = ? ";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -627,6 +632,11 @@ public class TirageDao {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        try {
+            preparedStatement.setString(1, "LOTTO");
+        } catch (SQLException ex) {
+            Logger.getLogger(TirageDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
    
 
@@ -641,9 +651,9 @@ public class TirageDao {
 
         try {
             while (res.next()) {
-                n = new Tirage(res.getInt("idTyrage"), res.getInt(3), res.getInt(4), res.getInt(5),
-                        res.getInt(6), res.getInt(7), res.getDate(2).toLocalDate(),
-                        res.getString(8));
+                 n = new Tirage(res.getInt("idTyrage"), res.getInt("num1"), res.getInt("num2"), res.getInt("num3"),
+                       res.getInt("num4"), res.getInt("num5"), res.getInt("numtirageBonus"),
+                       res.getDate("dateTyrage").toLocalDate(), res.getString("jourTirage"), res.getString("TypeLotto"));
 
             }
         } catch (SQLException ex) {

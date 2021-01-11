@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -35,8 +37,8 @@ public class TypeLottoDao {
         }
         
         try {
-            preparedStatement.setInt(1, unTypeLotto.getIdTypeLotto());
-            preparedStatement.setString(2, unTypeLotto.getLibelle());
+            preparedStatement.setInt(1, unTypeLotto.getIdTypeLotto().get());
+            preparedStatement.setString(2, unTypeLotto.getLibelle().get());
         } catch (SQLException ex) {
             Logger.getLogger(TypeLottoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +82,9 @@ public class TypeLottoDao {
         
         try {
             while(rs.next())
-            newTypeLotto = new TypeLotto(rs.getInt(1), rs.getString(2));
+            newTypeLotto = new TypeLotto(
+                    new SimpleIntegerProperty(rs.getInt(1)),
+                    new SimpleStringProperty( rs.getString(2)));
         } catch (SQLException ex) {
             Logger.getLogger(TypeLottoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,7 +121,8 @@ public class TypeLottoDao {
         
         try {
             while (rs.next()) {                
-                newTypeLotto = new TypeLotto(rs.getInt(1), rs.getString(2)); 
+                newTypeLotto = new TypeLotto(  new SimpleIntegerProperty(rs.getInt(1)),
+                    new SimpleStringProperty( rs.getString(2))); 
             }
    
         } catch (SQLException ex) {
@@ -141,8 +146,8 @@ public class TypeLottoDao {
         }
         
         try {
-            preparedStatement.setString(1, newlib.getLibelle());
-            preparedStatement.setInt(2, retreive.getIdTypeLotto() );
+            preparedStatement.setString(1, newlib.getLibelle().get());
+            preparedStatement.setInt(2, retreive.getIdTypeLotto().get() );
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -196,7 +201,8 @@ public class TypeLottoDao {
         try {
             while(res.next())
             {
-                lofTypeLotto.add(new TypeLotto(res.getInt(1), res.getString(2)));
+                lofTypeLotto.add(new TypeLotto(  new SimpleIntegerProperty(res.getInt(1)),
+                    new SimpleStringProperty( res.getString(2))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);

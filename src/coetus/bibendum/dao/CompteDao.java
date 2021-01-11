@@ -16,6 +16,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.binding.NumberBinding;
+
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -31,14 +37,14 @@ public class CompteDao {
     public boolean creerComptePersonne(Compte unCompte)
     {
          int b = 1;
-            boolean bool = verifierPseudo(unCompte.getPseudo());
+            boolean bool = verifierPseudo(unCompte.getPseudo().get());
             
             if (bool == true ) {
                 System.err.println("Veullez choisir un autre pseudo ");
             }else{
                      
             PersonneDao personneDao = new PersonneDao();
-            Personne per  = personneDao.getByNom(unCompte.getProprio().getNom());
+            Personne per  = personneDao.getByNom(unCompte.getProprio().getNom().get());
         
             if (per == null) {
                 personneDao.createPersonne(unCompte.getProprio());
@@ -55,10 +61,10 @@ public class CompteDao {
         }
         
         try {
-            preparedStatement.setString(1, unCompte.getPseudo());
-            preparedStatement.setString(2, unCompte.getMotDePasse());
-            preparedStatement.setFloat(3, unCompte.getSolde());
-            preparedStatement.setInt(4, new PersonneDao().getByNom(unCompte.getProprio().getNom()).getIdpersonne());
+            preparedStatement.setString(1, unCompte.getPseudo().get());
+            preparedStatement.setString(2, unCompte.getMotDePasse().get());
+            preparedStatement.setFloat(3, unCompte.getSolde().get());
+            preparedStatement.setInt(4, new PersonneDao().getByNom(unCompte.getProprio().getNom().get()).getIdpersonne().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,9 +98,10 @@ public class CompteDao {
      */
     public boolean creerCompte(Compte unCompte) {
         int b = 0;
-        boolean bool = verifierPseudo(unCompte.getPseudo());
+        boolean fait = false;      
+        boolean bool = verifierPseudo(unCompte.getPseudo().get());
         if (bool == true) {
-            System.err.println("Veuillez choisir un nouveau pseudo !");
+            System.err.println(" Veuillez choisir un nouveau pseudo !. Ce pseudo existes deja dans la base");
         } else {
             Connection connection = Connexion.getConnexion();
             PreparedStatement preparedStatement = null;
@@ -107,10 +114,10 @@ public class CompteDao {
             }
 
             try {
-                preparedStatement.setString(1, unCompte.getPseudo());
-                preparedStatement.setString(2, unCompte.getMotDePasse());
-                preparedStatement.setFloat(3, unCompte.getSolde());
-                preparedStatement.setInt(4, new PersonneDao().getByNom(unCompte.getProprio().getNom()).getIdpersonne());
+                preparedStatement.setString(1, unCompte.getPseudo().get());
+                preparedStatement.setString(2, unCompte.getMotDePasse().get());
+                preparedStatement.setFloat(3, unCompte.getSolde().get());
+                preparedStatement.setInt(4, new PersonneDao().getByNom(unCompte.getProprio().getNom().get()).getIdpersonne().get());
             } catch (SQLException ex) {
                 Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -120,14 +127,19 @@ public class CompteDao {
             } catch (SQLException ex) {
                 Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+             
+       
+          
             if (b > 0) {
                 System.out.println("Insertion reussi ");
+                fait = true;
             }
 
         }
+       
+        
+        return fait;
 
-        return true ? b > 0 : false;
     }
     /**
      * 
@@ -163,10 +175,10 @@ public class CompteDao {
 
         try {
             while (resultSet.next()) {
-                compte = new Compte(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getFloat(4), resultSet.getFloat(5),
-                        new PersonneDao().getById(resultSet.getInt(7)),
-                        resultSet.getDate(6).toLocalDate());
+                compte = new Compte( new SimpleIntegerProperty(resultSet.getInt(1))
+                        , new SimpleStringProperty(resultSet.getString(2)) ,new SimpleStringProperty(resultSet.getString(3)),
+                         new SimpleFloatProperty(resultSet.getFloat(4)),  new SimpleFloatProperty(resultSet.getFloat(5)),
+                 resultSet.getDate(6).toLocalDate(),  new PersonneDao().getById(resultSet.getInt(7)));
             }
 
         } catch (SQLException ex) {
@@ -250,7 +262,11 @@ public class CompteDao {
         
         try {
             while (rs.next()) {
-                compte = new Compte(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), 
+                compte = new Compte( new SimpleIntegerProperty(rs.getInt(1)) , 
+                        new SimpleStringProperty(rs.getString(2)),
+                        new SimpleStringProperty(rs.getString(3)), 
+                        new SimpleFloatProperty(rs.getFloat(4)) , 
+                        new SimpleFloatProperty(rs.getFloat("prixGagner")),
                         rs.getDate(6).toLocalDate(),  new PersonneDao().getById(rs.getInt(7))); 
             }
         } catch (SQLException ex) {
@@ -259,12 +275,11 @@ public class CompteDao {
            return compte;
        }
 
-/*
---------------------------------------------------------------------------------
-Cette methode permet de supprimer un compte 
---------------------------------------------------------------------------------    
-*/
-       
+       /**
+        * 
+        * @param IdCompte
+        * @return 
+        */
    public boolean deleteById(int IdCompte)
    {
        Connection connection = Connexion.getConnexion();
@@ -305,15 +320,23 @@ Cette methode permet de supprimer un compte
    
    */
    
-   
+   /**
+    * 
+    */
    public void achat (String  PseudoCompte, float montantAchat){
        
        Connection connection = Connexion.getConnexion();
        PreparedStatement preparedStatement = null;
        String sql = "update compte set solde = ? where idCompte = ? ";
        Compte compte = getBypseudo(PseudoCompte);
-        if (compte.getSolde() > montantAchat) {
-            float montant = compte.getSolde() - montantAchat;
+       SimpleFloatProperty soldeFloatProperty = null;
+      BooleanBinding bool =  compte.getSolde().greaterThan(new SimpleFloatProperty(montantAchat));
+      
+       if(bool.get() == true){
+           soldeFloatProperty = (SimpleFloatProperty) compte.getSolde().subtract(new SimpleFloatProperty(montantAchat));
+           compte.setSolde(soldeFloatProperty);
+       }
+            
            
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -321,8 +344,11 @@ Cette methode permet de supprimer un compte
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            preparedStatement.setFloat(1, montant);
-            preparedStatement.setInt(2, compte.getIdCompte());
+            if (soldeFloatProperty!=null) {
+                 preparedStatement.setFloat(1, soldeFloatProperty.getValue());
+            }
+           
+            preparedStatement.setInt(2, compte.getIdCompte().get());
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -332,9 +358,7 @@ Cette methode permet de supprimer un compte
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-       }else{
-            System.err.println("Montant insuffisant pour effectuer ! ");
-        }
+       
        
        
    }
@@ -344,7 +368,12 @@ Cette methode permet de supprimer un compte
    methode pour faire un depot sur le compte
    ---------------------------------------------
    */
-   
+   /**
+    * 
+    * @param PseudoCompte
+    * @param montantDepot
+    * @return 
+    */
    public boolean depot (String PseudoCompte, float montantDepot)
    {
        
@@ -352,16 +381,22 @@ Cette methode permet de supprimer un compte
        PreparedStatement preparedStatement = null;
        String sql = "update compte set solde = ? where idCompte = ? ";
        Compte compte = getBypseudo(PseudoCompte);
-       float montant = compte.getSolde() + montantDepot;
-       
+//       SimpleFloatProperty montant = compte.getSolde() + montantDepot;
+       NumberBinding montant = null;
+    
+            
+         if (compte != null ) {
+           montant = compte.getSolde().add(new SimpleFloatProperty(montantDepot));
+           compte.setSolde((SimpleFloatProperty) montant);
+                   }
         try {
             preparedStatement = connection.prepareStatement(sql);
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            preparedStatement.setFloat(1, montant);
-            preparedStatement.setInt(2, compte.getIdCompte());
+            preparedStatement.setFloat(1, montant.getValue().floatValue());
+            preparedStatement.setInt(2, compte.getIdCompte().get());
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -429,9 +464,12 @@ Cette methode permet de supprimer un compte
         
         try {
             while (rs.next()) {
-                compte = new Compte(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), 
-                        rs.getDate(6).toLocalDate(),  new PersonneDao().getById(rs.getInt(7))); 
-            }
+                compte = new Compte( new SimpleIntegerProperty(rs.getInt(1)) , 
+                        new SimpleStringProperty(rs.getString(2)),
+                        new SimpleStringProperty(rs.getString(3)), 
+                        new SimpleFloatProperty(rs.getFloat(4)) , 
+                        new SimpleFloatProperty(rs.getFloat("prixGagner")),
+                        rs.getDate(6).toLocalDate(),  new PersonneDao().getById(rs.getInt(7))); }
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -443,7 +481,7 @@ Cette methode permet de supprimer un compte
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
         Compte compte = new Compte();
-        compte = getBypseudo(unCompte.getPseudo());
+        compte = getBypseudo(unCompte.getPseudo().getValue());
         String sql = "update compte  set motDePasse = ?, prixGagner = ? , solde = ? where idCompte = ? ";
 
         try {
@@ -452,15 +490,15 @@ Cette methode permet de supprimer un compte
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            preparedStatement.setString(1, unCompte.getMotDePasse());
-            if (unCompte.getPrixGagner() != 0) {
-                preparedStatement.setFloat(2, compte.getPrixGagner());
+            preparedStatement.setString(1, unCompte.getMotDePasse().get());
+            if (unCompte.getPrixGagner().get() != 0) {
+                preparedStatement.setFloat(2, compte.getPrixGagner().get());
             } else {
                 preparedStatement.setString(2, null);
             }
-            preparedStatement.setFloat(3, unCompte.getSolde());
+            preparedStatement.setFloat(3, unCompte.getSolde().get());
 
-            preparedStatement.setInt(4, compte.getIdCompte());
+            preparedStatement.setInt(4, compte.getIdCompte().get());
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         }

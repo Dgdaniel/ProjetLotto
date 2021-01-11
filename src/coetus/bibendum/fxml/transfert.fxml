@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="330.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="coetus.bibendum.controller.TransfertController">
+    <stylesheets>
+        <URL value="@/coetus/bibendum/css/resetprofile.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-2.0" layoutY="14.0" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #5c057f;" stylesheets="@../css/resetprofile.css">
+         <children>
+            <Text fill="#eae3e3" fontSmoothingType="LCD" layoutX="140.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transfert">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="mntTransfert" focusColor="DODGERBLUE" labelFloat="true" layoutX="45.0" layoutY="184.0" prefHeight="40.0" prefWidth="256.0" promptText="Montant Transfert">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="annuler" layoutX="35.0" layoutY="304.0" onAction="#annuler" prefHeight="26.0" prefWidth="120.0" stylesheets="@../css/resetprofile.css" text="Annuler" />
+      <JFXButton fx:id="depot" layoutX="190.0" layoutY="306.0" onAction="#Transferer" prefHeight="26.0" prefWidth="120.0" stylesheets="@../css/resetprofile.css" text="Transfert" />
+      <JFXTextField fx:id="destinataire" focusColor="DODGERBLUE" labelFloat="true" layoutX="45.0" layoutY="114.0" prefHeight="40.0" prefWidth="256.0" promptText="Pseudo Destinataire">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </JFXTextField>
+   </children>
+</AnchorPane>

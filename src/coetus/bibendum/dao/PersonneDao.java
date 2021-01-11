@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package coetus.bibendum.dao;
 
 import coetus.bibendum.connexion.Connexion;
+import coetus.bibendum.modele.Compte;
 import coetus.bibendum.modele.Personne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -22,13 +21,13 @@ import java.util.logging.Logger;
  */
 public class PersonneDao {
     
-    /*
-    ----------------------------------------------------------------------------
-        Cette methode insert une personne dans la base de donnee et renvoie 
+ 
+    /**
+     * Cette methode insert une personne dans la base de donnee et renvoie 
         vrai si l'insertion a reussi faux sinon
-    ----------------------------------------------------------------------------
-    */
-    
+     * @param p
+     * @return 
+     */
     public boolean createPersonne(Personne p)
     {
         Connection connection = Connexion.getConnexion();
@@ -42,40 +41,44 @@ public class PersonneDao {
         }
         
         try {
-            preparedStatement.setString(1, p.getNom());
-            preparedStatement.setString(2, p.getPrenom());
-            preparedStatement.setInt(3, p.getAge());
-            preparedStatement.setString(4, p.getSexe());
+            preparedStatement.setString(1, p.getNom().get());
+            preparedStatement.setString(2, p.getPrenom().get());
+            preparedStatement.setInt(3, p.getAge().get());
+            preparedStatement.setString(4, p.getSexe().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-       int b = 1;
+        
+        int b = 1;
         
         try {
             b = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (b>0) {
-            System.out.println("Insertion reussi ");
+        boolean fait = false;
+          if (b > 0) {
+            System.out.println(" objet supprimer !");
+             fait = true;
         }
         
-        return true ? b> 0 : false;
+        return fait;
     }
     
     
-    /* 
-    ----------------------------------------------------------------------------
-     retreive a user by it's name from the database 
-     this methode take as a parameter a string and return an object Personne
-    ----------------------------------------------------------------------------  
+   
+    /**
+     * retreive a user by it's name from the database 
+     * this method take as a parameter a string and return an object Person
+     * @param nom
+     * @return 
      */
-    public Personne getByNom(String nom)
+        public Personne getByNom(String nom)
     {
         Connection conn = Connexion.getConnexion();
         Personne personne = null ;
         PreparedStatement pstatement = null;
-        String sql = "select * from personne where nom = ? limit 2";
+        String sql = "select * from personne where nom = ? ";
         try {
             pstatement = conn.prepareStatement(sql);
         } catch (SQLException ex) {
@@ -98,7 +101,9 @@ public class PersonneDao {
         
         try {
             while(resultSet.next())
-            personne = new Personne(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5));
+            personne = new Personne(new SimpleIntegerProperty(resultSet.getInt(1)), 
+                    new SimpleStringProperty( resultSet.getString(2)) , new SimpleStringProperty(resultSet.getString(3)) , 
+                    new SimpleIntegerProperty(resultSet.getInt(4)) , new SimpleStringProperty(resultSet.getString(5)) );
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -109,13 +114,13 @@ public class PersonneDao {
     }
     
     
-    /*
-    ----------------------------------------------------------------------------
-    Cette methode retourne un objet de type personne grace a son id
-    ----------------------------------------------------------------------------
-    */
+
     
-    
+    /**
+     * This method return an object of type person by it's Id
+     * @param Id
+     * @return 
+     */
     public Personne getById(int Id)
     {
           
@@ -145,8 +150,9 @@ public class PersonneDao {
         
         try {
             while(resultSet.next()){
-               personne = new Personne(resultSet.getInt(1), resultSet.getString(2), 
-                       resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5)); 
+               personne = new Personne(new SimpleIntegerProperty(resultSet.getInt(1)), 
+                    new SimpleStringProperty( resultSet.getString(2)) , new SimpleStringProperty(resultSet.getString(3)) , 
+                    new SimpleIntegerProperty(resultSet.getInt(4)) , new SimpleStringProperty(resultSet.getString(5)) );
             }
             
         } catch (SQLException ex) {
@@ -157,15 +163,17 @@ public class PersonneDao {
         
         return personne;
     }
-    /*
-    ----------------------------------------------------------------------------
-        Cette methode permet de supprimer une personne en prenant en 
+    
+    
+    /**
+     *   Cette methode permet de supprimer une personne en prenant en 
         parametre un nom 
-    ----------------------------------------------------------------------------
-    */
+     * @param nom
+     * @return 
+     */
         public boolean deleteByNom(String nom)
     {
-       
+       boolean fait = false;
         Connection connection = Connexion.getConnexion();
         PreparedStatement preparedStatement = null;
         String sql = "delete from personne where idPersonne = ? ";
@@ -178,7 +186,7 @@ public class PersonneDao {
         }
         
         try {
-            preparedStatement.setInt(1, personne.getIdpersonne());
+            preparedStatement.setInt(1, personne.getIdpersonne().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -193,8 +201,9 @@ public class PersonneDao {
         
         if (res > 0) {
             System.out.println(" objet supprimer !");
+            fait = true;
         }
-        return true ? res > 0: false;
+        return fait;
     }
     
     
@@ -224,10 +233,13 @@ public class PersonneDao {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (res > 0) {
+        boolean fait = false;
+        
+         if (res > 0) {
             System.out.println(" objet supprimer !");
+            fait = true;
         }
-        return true ? res > 0: false;
+        return fait;
    }
     
     /*
@@ -251,8 +263,8 @@ public class PersonneDao {
         }
         
         try {
-            preparedStatement.setString(1, nouvellePersonne.getNom());
-            preparedStatement.setInt(2, retreive.getIdpersonne());
+            preparedStatement.setString(1, nouvellePersonne.getNom().get());
+            preparedStatement.setInt(2, retreive.getIdpersonne().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -265,19 +277,22 @@ public class PersonneDao {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (res > 0) {
-            System.out.println(" Modification effectuer !");
+       boolean fait = false;
+          if (res > 0) {
+            System.out.println(" objet supprimer !");
+             fait = true;
         }
-        return true ? res > 0: false;
+        
+        return fait;
     }
     
-     /*
-    ----------------------------------------------------------------------------
-        Cette methode permet de modifier le prenom de la personne 
-    ----------------------------------------------------------------------------
-    
-    */
-    
+     
+    /**
+     * Cette methode permet de modifier le prenom de la personne
+     * @param old
+     * @param newPrenom
+     * @return 
+     */
     public boolean updatePrenom(String old, Personne newPrenom )
     {
         Connection connection = Connexion.getConnexion();
@@ -291,8 +306,8 @@ public class PersonneDao {
         }
         
         try {
-            preparedStatement.setString(1, newPrenom.getPrenom() );
-            preparedStatement.setString(2, retreive.getPrenom());
+            preparedStatement.setString(1, newPrenom.getPrenom().get() );
+            preparedStatement.setString(2, retreive.getPrenom().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -311,12 +326,13 @@ public class PersonneDao {
         return true ? res > 0: false;
     }
     
-     /*
-    ----------------------------------------------------------------------------
-        Cette methode permet de modifier l'age de la personne 
-    ----------------------------------------------------------------------------
-    */
-    
+   
+    /**
+     * Cette methode permet de modifier l'age de la personne 
+     * @param old
+     * @param newAge
+     * @return 
+     */
     public boolean updateAge(String old, Personne newAge)
     {
          Connection connection = Connexion.getConnexion();
@@ -330,8 +346,8 @@ public class PersonneDao {
         }
         
         try {
-            preparedStatement.setInt(1, newAge.getAge() );
-            preparedStatement.setInt(2, retreive.getIdpersonne());
+            preparedStatement.setInt(1, newAge.getAge().get() );
+            preparedStatement.setInt(2, retreive.getIdpersonne().get());
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -343,19 +359,25 @@ public class PersonneDao {
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (res > 0) {
-            System.out.println(" Modification effectuer ! ");
+      boolean fait = false;
+          if (res > 0) {
+            System.out.println(" objet supprimer !");
+             fait = true;
         }
-        return true ? res > 0: false;
+        
+        return fait;
     }
     
     
      /*
     ----------------------------------------------------------------------------
-        Cette methode permet de recupere la liste des personnes
+        
     ----------------------------------------------------------------------------
     */
+    /**
+     * Cette methode permet de recupere la liste des personnes
+     * @return 
+     */
     public List<Personne> getAll()
     {
         
@@ -387,7 +409,9 @@ public class PersonneDao {
         try {
             while(res.next())
             {
-                lofPersonnes.add(new Personne(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5)));
+                lofPersonnes.add( new Personne(new SimpleIntegerProperty(res.getInt(1)), 
+                    new SimpleStringProperty( res.getString(2)) , new SimpleStringProperty(res.getString(3)) , 
+                    new SimpleIntegerProperty(res.getInt(4)) , new SimpleStringProperty(res.getString(5))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -397,4 +421,55 @@ public class PersonneDao {
     }
     
     
+    public boolean updatePerson(Compte unCompte, Personne personne){
+         Connection connection = Connexion.getConnexion();
+        PreparedStatement preparedStatement = null;
+        String sql = "update personne set nom = ? , prenom=?, age = ? , sexe = ?  where idPersonne = ? ";
+        PersonneDao personneDao = new PersonneDao();
+        CompteDao compteDao = new CompteDao();
+        Personne retreive = new Personne();
+        Compte r = new Compte();
+        r = compteDao.getBypseudo(unCompte.getPseudo().get());
+        retreive = r.getProprio();
+        
+  
+         
+          try {
+            preparedStatement = connection.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+         
+            preparedStatement.setString(1, personne.getNom().get() );
+            preparedStatement.setString(2, personne.getPrenom().get());
+            preparedStatement.setInt(3, personne.getAge().get());
+            if (personne.getSexe()!=null) {
+                 preparedStatement.setString(4, personne.getSexe().get());
+            }else{
+                  preparedStatement.setString(4, null);
+            }
+            preparedStatement.setInt(5, retreive.getIdpersonne().get());
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int res = 1;
+        
+        try {
+            res = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       boolean fait = false;
+          if (res > 0) {
+            System.out.println(" objet supprimer !");
+             fait = true;
+        }
+        
+        return fait;
+    }
 }

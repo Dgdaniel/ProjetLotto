@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coetus.bibendum.controller;
+package coetus.bibendum.fxml;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Daniel
  */
-public class TombolaController implements Initializable {
+public class CreatCompteController implements Initializable {
 
     /**
      * Initializes the controller class.

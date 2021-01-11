@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coetus.bibendum.test;
 
-import coetus.bibendum.connexion.Connexion;
+
 
 /**
  *
  * @author Daniel
  */
-public class TestConnexion {
+public class TestTirage {
     
     public static void main(String[] args) {
-        Connexion.getConnexion();
+
     }
 }

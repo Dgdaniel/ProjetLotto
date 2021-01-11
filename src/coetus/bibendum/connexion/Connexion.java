@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 public class Connexion {
     
     private final static  String JDBCURL = "com.mysql.jdbc.Driver"; 
-  private final static String URL = "jdbc:mysql://localhost:3308/lotery?useSSL=false";
-  private final static String USER = "daniel";
-  private final static String PASS = "daniel";
+  private final static String URL = "jdbc:mysql://localhost:3306/lotery?useSSL=false";
+  private final static String USER = "root";
+  private final static String PASS = "";
   
   
   public  static Connection getConnexion(){

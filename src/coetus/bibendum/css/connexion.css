@@ -4,7 +4,7 @@
 }
 .leftPane{
  
-     -fx-background-color  : linear-gradient(to bottom left, #2f459e ,#5c057f);
+     -fx-background-color  : linear-gradient(to bottom left, #3C439E ,#950871);
 }
 .imageViewLeftPane{
     -fx-image:url("../icon/broken-zone.png");  
@@ -19,7 +19,7 @@
 
 .connexion{
     -fx-background-radius : 15px;
-    -fx-background-color : #5c057f;
+    -fx-background-color : #800661;
     -fx-text-fill: white;
     -fx-alignment:CENTER;
    
@@ -37,7 +37,7 @@
 }
 .creerCompte{
     -fx-background-radius : 15px;
-    -fx-background-color : #5c057f;
+    -fx-background-color : #800661;
      -fx-text-fill : white;
 }
 
@@ -80,6 +80,20 @@
     -fx-background-color: transparent; 
     -fx-font-familly: Shruti;
     -fx-font-size:15px;
+    
+}
+
+#AnchorPane{
+    -fx-background-image : url("../icon/connexion.jpg")
+}
+
+.affichage{
+    
+    -fx-background-color: transparent; 
+    -fx-font-familly: Arial;
+    -fx-font-size:20px; 
+    -fx-text-fill:white;
+    -fx-fill:white;
     
 }
 

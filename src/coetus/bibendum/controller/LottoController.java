@@ -8,7 +8,7 @@ import coetus.bibendum.dao.GrilleDao;
 import coetus.bibendum.dao.TirageDao;
 import coetus.bibendum.modele.Calcul;
 import coetus.bibendum.modele.Compte;
-import coetus.bibendum.modele.Grille;
+import coetus.bibendum.modele.Jeu;
 import coetus.bibendum.modele.Tirage;
 import coetus.bibendum.modele.TypeLotto;
 import com.jfoenix.controls.JFXButton;
@@ -16,12 +16,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -110,7 +106,7 @@ public class LottoController implements Initializable {
     
     private Compte connected;
 
-    private Grille jeuJouerParUtilisateurConnecter;
+    private Jeu jeuJouerParUtilisateurConnecter;
     private float argentMiser;
     private int coupJouer;
     
@@ -269,7 +265,7 @@ public class LottoController implements Initializable {
                 switch (jeu.size()) {
                     case 2:
                         jeuJouerParUtilisateurConnecter
-                                = new Grille(jeu.get(0), jeu.get(1), argentMiser, connected, new TypeLotto("LOTTO"));
+                                = new Jeu(jeu.get(0), jeu.get(1), argentMiser, connected, new TypeLotto("LOTTO"));
                         numeroTicket.setText(jeuJouerParUtilisateurConnecter.getTicket());
                         jeuEffectuer.setText(jeuJouerParUtilisateurConnecter.getNum1() + "-"
                                 + jeuJouerParUtilisateurConnecter.getNum2());
@@ -277,7 +273,7 @@ public class LottoController implements Initializable {
                         break;
                     case 3:
                         jeuJouerParUtilisateurConnecter
-                                = new Grille(jeu.get(0), jeu.get(1), jeu.get(2), argentMiser, connected, new TypeLotto("LOTTO"));
+                                = new Jeu(jeu.get(0), jeu.get(1), jeu.get(2), argentMiser, connected, new TypeLotto("LOTTO"));
                         numeroTicket.setText(jeuJouerParUtilisateurConnecter.getTicket());
                         jeuEffectuer.setText(jeuJouerParUtilisateurConnecter.getNum1() + "-"
                                 + jeuJouerParUtilisateurConnecter.getNum2() + "-"
@@ -286,7 +282,7 @@ public class LottoController implements Initializable {
                         break;
                     case 4:
                         jeuJouerParUtilisateurConnecter
-                                = new Grille(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), argentMiser, connected, new TypeLotto("LOTTO"));
+                                = new Jeu(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), argentMiser, connected, new TypeLotto("LOTTO"));
                         numeroTicket.setText(jeuJouerParUtilisateurConnecter.getTicket());
                         jeuEffectuer.setText(jeuJouerParUtilisateurConnecter.getNum1() + "-"
                                 + jeuJouerParUtilisateurConnecter.getNum2() + "-"
@@ -297,7 +293,7 @@ public class LottoController implements Initializable {
                         break;
                     case 5:
                         jeuJouerParUtilisateurConnecter
-                                = new Grille(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), jeu.get(4), argentMiser, connected, new TypeLotto("LOTTO"));
+                                = new Jeu(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), jeu.get(4), argentMiser, connected, new TypeLotto("LOTTO"));
                         numeroTicket.setText(jeuJouerParUtilisateurConnecter.getTicket());
                         jeuEffectuer.setText(jeuJouerParUtilisateurConnecter.getNum1() + "-"
                                 + jeuJouerParUtilisateurConnecter.getNum2() + "-"
@@ -308,7 +304,7 @@ public class LottoController implements Initializable {
                         break;
                     case 6:
                         jeuJouerParUtilisateurConnecter
-                                = new Grille(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), jeu.get(4), jeu.get(5), argentMiser, connected, new TypeLotto("LOTTO"));
+                                = new Jeu(jeu.get(0), jeu.get(1), jeu.get(2), jeu.get(3), jeu.get(4), jeu.get(5), argentMiser, connected, new TypeLotto("LOTTO"));
                         numeroTicket.setText(jeuJouerParUtilisateurConnecter.getTicket());
                         jeuEffectuer.setText(jeuJouerParUtilisateurConnecter.getNum1() + "-"
                                 + jeuJouerParUtilisateurConnecter.getNum2() + "-"
@@ -329,22 +325,21 @@ public class LottoController implements Initializable {
                 grilleDao.creerSampleGrille(jeuJouerParUtilisateurConnecter);
                 tirageDao = new TirageDao();
                 System.out.println(LocalDate.now());
-                Tirage idTyrage = tirageDao.getByDateTirage(LocalDate.now());
+                Tirage idTyrage = tirageDao.getByDateTirageSample(LocalDate.now());
                 System.out.println(idTyrage);
                 grilleDao.setTirageToNotYet(idTyrage.getIdTirage());
 
                 Tirage tirageDujour = tirageDao.getTirage(jeuJouerParUtilisateurConnecter.getTypeLotto().getLibelle());
 
-                notification(15, "Veuillez patientez", "/coetus/bibendum/icon/clock.png");
+                
 
-                try {
+           
 
                     
                     
-                    Thread.sleep(heurLocalDateTime.getMinute()+ 5);
-                    
-                 
-                     Calcul calcul = new Calcul();
+                   
+           notification(3, "Veuillez patientez", "/coetus/bibendum/icon/clock.png"," processus en cours ");    
+           Calcul calcul = new Calcul();
            int tirage [] = new int [6]; 
                tirage[0] = tirageDujour.getNumtir1();
                tirage[1] = tirageDujour.getNumtir2();
@@ -364,16 +359,18 @@ public class LottoController implements Initializable {
                 if (found == true) {
                     float prix= calcul.givePriceTotheWinner(calcul.ordreGagner(tableauDujoueur, tirage), tableauDujoueur.length, argentMiser, coupJouer);
                     notifierAgagner(String.valueOf(prix));
+                    connected.setPrixGagner(prix);
                     compteDao.depot(connected.getPseudo(), prix);
                     
-                }else{
-                    notification(6, "     Desole Mais vous avez perdu. \n Retentez vous y etes presque !    ", "/coetus/bibendum/icon/sad.png");
+                }else {
+                       notification(6, "     Desole Mais vous avez perdu. \n Retentez vous y etes presque !    ", "/coetus/bibendum/icon/sad.png", " feleication ");  
+                    }
+{
+                   
                 }
                 
                
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(LottoController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+           
            
           
            
@@ -456,21 +453,20 @@ public class LottoController implements Initializable {
         
     }
     
-    public void notification(int duree, String texte, String iconLink){
+    public void notification(int duree, String texte, String iconLink, String title){
         Image image = new Image(iconLink);
             Notifications notifications = Notifications.create()
-                    .title("    FELICITATION    ")
+                    .title("   "+title.toUpperCase()+"  ")
                     .text(texte)
                     .graphic(new ImageView(image))
                     .hideAfter(Duration.seconds(duree))
-                    .darkStyle()
                     .position(Pos.TOP_CENTER);        
             notifications.show();
         
     }
     
     public void notifierAgagner(String solde){
-        Image image = new Image("/coetus/bibendum/icon/bingo.png");
+        Image image = new Image("/coetus/bibendum/icon/bing-black.png");
             Notifications notifications = Notifications.create()
                     .title("   ERREUR   ")
                     .text("Bravo, vouz venez de gagner \n. Votre montant gagne est  "+solde)

@@ -53,7 +53,7 @@
                            </font>
                         </Label>
                         <Button fx:id="bntConnexion" layoutX="294.0" layoutY="399.0" mnemonicParsing="false" onAction="#handlebtnConnexion" prefHeight="29.0" prefWidth="128.0" styleClass="connexion" stylesheets="@../css/connexion.css" text="Connexion" textFill="WHITE" />
-                        <Button fx:id="btnCreerUnCompte" layoutX="107.0" layoutY="470.0" mnemonicParsing="false" onAction="#handlebtnCreerUnCompte" prefHeight="34.0" prefWidth="300.0" styleClass="creerCompte" text="Creer un Compte " />
+                        <Button fx:id="btnCreerUnCompte" layoutX="107.0" layoutY="470.0" mnemonicParsing="false" onAction="#handlebtnCreerUnCompte" prefHeight="34.0" prefWidth="300.0" styleClass="creerCompte" text="Creer un Compte " textFill="#5c057f" />
                         <ImageView fitHeight="22.0" fitWidth="30.0" layoutX="388.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icon/key.png" />

@@ -2,11 +2,15 @@
 package coetus.bibendum.controller;
 
 import animatefx.animation.FadeInRight;
+import coetus.bibendum.dao.TirageDao;
+import coetus.bibendum.modele.Calcul;
 import coetus.bibendum.modele.Compte;
+import coetus.bibendum.modele.Tirage;
 import com.gluonhq.charm.glisten.animation.FlipTransition;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,10 +60,10 @@ public class AppMainMenuController implements Initializable {
     @FXML
     private Pane BorderPaneCenter;
        @FXML
-    private AreaChart<?, ?> areaChart;
+    private AreaChart<String, Integer> areaChart;
 
     @FXML
-    private BarChart<?, ?> BarChart;
+    private BarChart<String, Integer> BarChart;
     
 
     @FXML
@@ -70,8 +74,12 @@ public class AppMainMenuController implements Initializable {
         
     @FXML
     void handleBntAcceuil(ActionEvent event) {
+        if (event.getSource().equals(AcceuilButton)) {
+           
             new FlipTransition(Acceuil).play();
         BorderPaneView.setCenter(Acceuil);
+        }
+            
     }
     
     /**
@@ -80,7 +88,23 @@ public class AppMainMenuController implements Initializable {
      */
     @FXML
     void handleBntLotto(ActionEvent event) throws IOException {
+        
+         
+        
+       if (event.getSource().equals(LottoButton)) {
+           
+           if (new TirageDao().getByDateTirageSample(LocalDate.now()) == null ) {
+             // generer le  tyrage du jour    
                 
+            Calcul calcul = new Calcul();
+            int[] tirageTableau = calcul.genererTirage();
+            int numBonus = calcul.GenererNumeroBonus();
+            Tirage tirage = new Tirage(tirageTableau[0], tirageTableau[1], tirageTableau[2], tirageTableau[3], tirageTableau[4], numBonus, "LOTTO");
+            TirageDao tirageDao = new TirageDao();
+            tirageDao.creerTirage(tirage);
+    
+            }
+                   
         FXMLLoader lotto = new FXMLLoader(getClass().getResource("../fxml/lotto.fxml"));
         Pane view = lotto.load();
         LottoController lottoController = lotto.getController();
@@ -88,11 +112,15 @@ public class AppMainMenuController implements Initializable {
 
         new FadeInRight(view).play();
         BorderPaneView.setCenter(view);
+        }
+     
     }
 
     @FXML
     void handleBntParametre(ActionEvent event) {
         if (event.getSource().equals(this.ParametreButton)) {
+           
+           
             try {
 
                 FXMLLoader setting = new FXMLLoader(getClass().getResource("../fxml/setting.fxml"));
@@ -122,6 +150,7 @@ public class AppMainMenuController implements Initializable {
    
     
     public void utilisateurConnecter(Compte compte){
+        connected = new Compte();
         connected = compte;
         UserNameOnTheTopBar.setText("Welcome to "+connected.getProprio().getPrenom()+" "+connected.getProprio().getNom());
     
